@@ -27,6 +27,7 @@ var CatFact = /** @class */ (function (_super) {
         this.element.css("width", "auto");
         //"https://cat-fact.herokuapp.com/facts/random"
         $.ajax({
+            method: "GET",
             url: "https://cat-fact.herokuapp.com/facts/random",
             jsonpCallback: "logResult",
             //dataType: "jsonp",

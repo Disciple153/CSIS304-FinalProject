@@ -20,6 +20,7 @@ class CatFact extends Transform {
 
 
         $.ajax({
+            method: "GET",
             url: "https://cat-fact.herokuapp.com/facts/random",
             jsonpCallback: "logResult",
             //dataType: "jsonp",
