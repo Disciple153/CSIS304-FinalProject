@@ -56,6 +56,9 @@ interface Control {
     left: boolean;
     down: boolean;
     right: boolean;
+    fire: boolean;
+    mouseX: number;
+    mouseY: number;
 }
 
 // *****************************************************************************
@@ -152,11 +155,26 @@ class Game {
         }
     }
 
-    static Click(x: number, y: number) {
-        console.log("x: " + x + " y: " + y);
+    static MouseDown(x: number, y: number) {
         switch (Game.state) {
             case State.play:
-                Game.world.player.Click(x, y);
+                Game.world.player.MouseDown(Game.world, x, y);
+                break;
+        }
+    }
+
+    static MouseUp() {
+        switch (Game.state) {
+            case State.play:
+                Game.world.player.MouseUp();
+                break;
+        }
+    }
+
+    static MouseMove(x: number, y: number) {
+        switch (Game.state) {
+            case State.play:
+                Game.world.player.MouseMove(x, y);
                 break;
         }
     }
@@ -351,7 +369,7 @@ class Game {
 // *****************************************************************************
 // CONTROLS
 // *****************************************************************************
-// This is deprecated, but there is no real alternative.
+// These are deprecated, but there is no real alternative.
 $(document).keydown(function(e) {
     Game.KeyDown(e.originalEvent.key);
 });
@@ -359,8 +377,16 @@ $(document).keyup(function(e) {
     Game.KeyUp(e.originalEvent.key);
 });
 
-$(document).click(function (e) {
-    Game.Click(e.originalEvent.clientX, e.originalEvent.clientY);
+$(document).mousedown(function (e) {
+    Game.MouseDown(e.originalEvent.clientX, e.originalEvent.clientY);
+});
+
+$(document).mouseup(function () {
+    Game.MouseUp();
+});
+
+$(document).mousemove(function (e) {
+    Game.MouseMove(e.originalEvent.clientX, e.originalEvent.clientY);
 });
 
 /*

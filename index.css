@@ -11,5 +11,12 @@ body {
 .Ship {
     background: url("assets/ship.png");
     background-size: 100% 100%;
+}
 
+.Bullet {
+    background-color: aqua;
+}
+
+.CatFact {
+    background-color: rebeccapurple;
 }

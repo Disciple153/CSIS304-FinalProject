@@ -132,11 +132,24 @@ var Game = /** @class */ (function () {
                 break;
         }
     };
-    Game.Click = function (x, y) {
-        console.log("x: " + x + " y: " + y);
+    Game.MouseDown = function (x, y) {
         switch (Game.state) {
             case State.play:
-                Game.world.player.Click(x, y);
+                Game.world.player.MouseDown(Game.world, x, y);
+                break;
+        }
+    };
+    Game.MouseUp = function () {
+        switch (Game.state) {
+            case State.play:
+                Game.world.player.MouseUp();
+                break;
+        }
+    };
+    Game.MouseMove = function (x, y) {
+        switch (Game.state) {
+            case State.play:
+                Game.world.player.MouseMove(x, y);
                 break;
         }
     };
@@ -306,15 +319,21 @@ var Game = /** @class */ (function () {
 // *****************************************************************************
 // CONTROLS
 // *****************************************************************************
-// This is deprecated, but there is no real alternative.
+// These are deprecated, but there is no real alternative.
 $(document).keydown(function (e) {
     Game.KeyDown(e.originalEvent.key);
 });
 $(document).keyup(function (e) {
     Game.KeyUp(e.originalEvent.key);
 });
-$(document).click(function (e) {
-    Game.Click(e.originalEvent.clientX, e.originalEvent.clientY);
+$(document).mousedown(function (e) {
+    Game.MouseDown(e.originalEvent.clientX, e.originalEvent.clientY);
+});
+$(document).mouseup(function () {
+    Game.MouseUp();
+});
+$(document).mousemove(function (e) {
+    Game.MouseMove(e.originalEvent.clientX, e.originalEvent.clientY);
 });
 /*
 

@@ -14,10 +14,8 @@ class Immovable extends Transform {
     Init(world: World): void {}
 
     Pre(world: World): void {
-        $("#test").html("");
     }
     Post(world: World): void {
-        $("#test").append(`(${this.position.x}, ${this.position.y})<br>`)
     }
     Collision(world: World): void {}
 

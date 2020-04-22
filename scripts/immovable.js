@@ -30,10 +30,8 @@ var Immovable = /** @class */ (function (_super) {
     }
     Immovable.prototype.Init = function (world) { };
     Immovable.prototype.Pre = function (world) {
-        $("#test").html("");
     };
     Immovable.prototype.Post = function (world) {
-        $("#test").append("(" + this.position.x + ", " + this.position.y + ")<br>");
     };
     Immovable.prototype.Collision = function (world) { };
     // Do not move under any circumstance

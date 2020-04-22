@@ -7,8 +7,8 @@ class Transform {
     public GRAVITY: number = 0;
     public RESISTANCE: number = 0;
 
-    public _velocity: Vector;
-    public velocity: Vector;
+    public _velocity: Vector;   // Read
+    public velocity: Vector;    // Write
     public toDelete: boolean = false;
 
     public static oppositeSide = [Side.none, Side.top, Side.right, Side.bottom, Side.left];
