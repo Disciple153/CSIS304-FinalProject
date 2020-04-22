@@ -1,0 +1,15 @@
+* {
+    overflow: hidden;
+    z-index: 0;
+}
+
+body {
+    background-color: black;
+    color: white;
+}
+
+.Ship {
+    background: url("assets/ship.png");
+    background-size: 100% 100%;
+
+}

@@ -10,8 +10,23 @@
 			  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
               crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script src="index.js"></script>
+        <script src="scripts/index.js"></script>
+        <script src="scripts/dyn.js"></script>
+        <script src="scripts/collisionTypes.js"></script>
+        <script src="scripts/vector.js"></script>
+        <script src="scripts/transform.js"></script>
+        <script src="scripts/immovable.js"></script>
+        <script src="scripts/ship.js"></script>
     </head>
-    <body>
+    <body onload="Game.main();">
+        <div id="Menu">
+            This is the menu. It should start visible, then go away when the spacebar is pressed.
+        </div>
+        <div id="Game" hidden>
+            This is the Game.
+        </div>
+        <div id="GameOver" hidden>
+            GameOver
+        </div>
     </body>
 </html>
