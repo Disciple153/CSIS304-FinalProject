@@ -44,6 +44,7 @@ interface World {
     deltaTime: number;
     vMultiplier: number;
     player: Ship;
+    typeIDs: {};
 }
 
 interface Collision {
@@ -106,6 +107,13 @@ class Game {
         Game.world.gameObjects[id] = transform;
 
         Game.world.ids.push(id);
+
+        if (Game.world.typeIDs[transformClass] == undefined)
+        {
+            Game.world.typeIDs[transformClass] = [];
+        }
+
+        Game.world.typeIDs[transformClass].push(id);
 
         if (transform instanceof Immovable) {
             Game.world.immovables.push(id);
@@ -195,10 +203,7 @@ class Game {
 
         Game.score = 0;
 
-        // Clear and initialize data;
-        Game.world = undefined;
-        $("#Game").html(`<br><h1 id="scoreboard"></h1>`);
-
+        // initialize data;
         Game.world = {
             gameObjects: {},
             ids: [],
@@ -207,7 +212,14 @@ class Game {
             time: Date.now(),
             deltaTime: 0,
             vMultiplier: 0,
-            player: Game.player
+            player: Game.player,
+            typeIDs: {
+                "Bullet": [],
+                "Laser": [],
+                "CatFact": [],
+                "Ship": [],
+                "Immovable": []
+            }
         };
 
         // Create collision for the screen
@@ -280,11 +292,6 @@ class Game {
             // Correct collisions for GameObjects colliding with Immovables
             Game.world.immovables.forEach(function (id, hash) {
                 Game.world.gameObjects[id].CorrectCollisions(hash);
-
-                // Detect collisions
-                Game.world.ids.forEach(function (id) {
-                    Game.world.gameObjects[id].DetectCollisions(Game.world);
-                });
             });
 
             // Correct collisions for GameObjects colliding with movables
@@ -329,6 +336,11 @@ class Game {
                     index = Game.world.movables.indexOf(id);
                     if (index !== -1) Game.world.movables.splice(index, 1);
 
+                    for (let key in Game.world.typeIDs) {
+                        index = Game.world.typeIDs[key].indexOf(id);
+                        if (index !== -1) Game.world.typeIDs[key].splice(index, 1);
+                    }
+
                     // delete key from ids array
                     Game.world.ids.splice(i, 1);
                     i--;
@@ -346,15 +358,12 @@ class Game {
             }
         }
 
-        $('#Game').hide();
+        //$('#Game').hide();
         Game.GameOver();
     }
 
     static GameOver() {
-        $("#scoreboard").html(`
-        Game Over <br>
-        Score: ${Game.score}<br>
-        Press the spacebar to play again!`);
+        $("#GameOver").show();
     }
 
 

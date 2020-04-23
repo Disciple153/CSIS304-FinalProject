@@ -90,39 +90,82 @@ var Transform = /** @class */ (function () {
     };
     Transform.prototype.DetectCollisions = function (world) {
         var _this = this;
-        var that;
+        if (this instanceof Bullet) {
+            world.typeIDs["Ship"].forEach(function (id) {
+                Transform.Detect(world, _this, id);
+            });
+            world.immovables.forEach(function (id) {
+                Transform.Detect(world, _this, id);
+            });
+        }
+        else if (this instanceof Laser) {
+            world.typeIDs["CatFact"].forEach(function (id) {
+                Transform.Detect(world, _this, id);
+            });
+            world.immovables.forEach(function (id) {
+                Transform.Detect(world, _this, id);
+            });
+        }
+        else if (this instanceof CatFact) {
+            world.typeIDs["Laser"].forEach(function (id) {
+                Transform.Detect(world, _this, id);
+            });
+            world.typeIDs["Ship"].forEach(function (id) {
+                Transform.Detect(world, _this, id);
+            });
+            world.immovables.forEach(function (id) {
+                Transform.Detect(world, _this, id);
+            });
+        }
+        else if (this instanceof Ship) {
+            world.typeIDs["Bullet"].forEach(function (id) {
+                Transform.Detect(world, _this, id);
+            });
+            world.typeIDs["CatFact"].forEach(function (id) {
+                Transform.Detect(world, _this, id);
+            });
+            world.immovables.forEach(function (id) {
+                Transform.Detect(world, _this, id);
+            });
+        }
+        else if (this instanceof Immovable) {
+            world.movables.forEach(function (id) {
+                Transform.Detect(world, _this, id);
+            });
+        }
+        return this._collisions.length;
+    };
+    Transform.Detect = function (world, _this, id) {
+        var that = world.gameObjects[id];
         var right;
         var left;
         var top;
         var bottom;
-        world.ids.forEach(function (id) {
-            that = world.gameObjects[id];
-            // Check axis-aligned rectangle collision
-            // If there was a valid collision
-            if (_this.id != that.id && _this.collidable && that.collidable &&
-                _this.position.x + _this.size.x > that.position.x &&
-                _this.position.y + _this.size.y > that.position.y &&
-                _this.position.x < that.position.x + that.size.x &&
-                _this.position.y < that.position.y + that.size.y) {
-                // Calculate depth of collision for each side
-                right = (_this.position.x + _this.size.x) - that.position.x;
-                bottom = (_this.position.y + _this.size.y) - that.position.y;
-                left = (that.position.x + that.size.x) - _this.position.x;
-                top = (that.position.y + that.size.y) - _this.position.y;
-                // Determine on which side the collision is the most shallow
-                // right and left
-                if (right < left && right < top && right < bottom) {
-                    _this.AddCollision({ transform: that, side: Side.right });
-                    that.AddCollision({ transform: _this, side: Side.left });
-                }
-                // top and bottom
-                else if (top < bottom && top < left) {
-                    _this.AddCollision({ transform: that, side: Side.top });
-                    that.AddCollision({ transform: _this, side: Side.bottom });
-                }
+        // Check axis-aligned rectangle collision
+        // If there was a valid collision
+        if (that !== undefined &&
+            _this.id != that.id && _this.collidable && that.collidable &&
+            _this.position.x + _this.size.x > that.position.x &&
+            _this.position.y + _this.size.y > that.position.y &&
+            _this.position.x < that.position.x + that.size.x &&
+            _this.position.y < that.position.y + that.size.y) {
+            // Calculate depth of collision for each side
+            right = (_this.position.x + _this.size.x) - that.position.x;
+            bottom = (_this.position.y + _this.size.y) - that.position.y;
+            left = (that.position.x + that.size.x) - _this.position.x;
+            top = (that.position.y + that.size.y) - _this.position.y;
+            // Determine on which side the collision is the most shallow
+            // right and left
+            if (right < left && right < top && right < bottom) {
+                _this.AddCollision({ transform: that, side: Side.right });
+                that.AddCollision({ transform: _this, side: Side.left });
             }
-        });
-        return this._collisions.length;
+            // top and bottom
+            else if (top < bottom && top < left) {
+                _this.AddCollision({ transform: that, side: Side.top });
+                that.AddCollision({ transform: _this, side: Side.bottom });
+            }
+        }
     };
     Transform.prototype.CorrectCollisions = function (hash) {
         var _this = this;

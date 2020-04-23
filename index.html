@@ -2,7 +2,7 @@
 <!-- https://disciple153.github.io/CSIS304-FinalProject/ -->
 <html lang="en">
     <head>
-        <title>Dynamic JS Project</title>
+        <title>Cat Facts Bullet Hell</title>
         <meta charset="UTF-8">
         <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
         <link rel="stylesheet" type="text/css" href="index.css">
@@ -10,6 +10,7 @@
 			  src="https://code.jquery.com/jquery-3.4.1.min.js"
 			  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
               crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/tumult/dist/tumult.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="scripts/index.js"></script>
         <script src="scripts/dyn.js"></script>
@@ -18,18 +19,25 @@
         <script src="scripts/transform.js"></script>
         <script src="scripts/immovable.js"></script>
         <script src="scripts/ship.js"></script>
+        <script src="scripts/laser.js"></script>
         <script src="scripts/bullet.js"></script>
         <script src="scripts/catFact.js"></script>
     </head>
     <body onload="Game.main();">
         <div id="Menu">
-            This is the menu. It should start visible, then go away when the spacebar is pressed.
+            <h1>Welcome to Cat Facts Bullet Hell!</h1>
+            <p>Controls: WASD to move. Click to shoot.</p>
         </div>
         <div id="Game" hidden>
-            This is the Game.
+            <div id="Scoreboard">
+                <h1>Score:</h1>
+                <div id="Score"></div>
+            </div>
         </div>
         <div id="GameOver" hidden>
-            GameOver
+            <h1>Game Over</h1>
+            <p>Press the space bar to play again!</p>
         </div>
+        <div id="Debug"></div>
     </body>
 </html>

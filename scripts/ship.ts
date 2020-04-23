@@ -7,6 +7,9 @@ class Ship extends Transform {
     private _control: Control;
     private _fireCountdown: number = 0;
     private _factCountdown: number = 0;
+    private _points: number = 0;
+    private _look: number = 0;
+    private _hp: number = 3;
 
     Init(world: World): void {
         this.size.x = 40;
@@ -21,32 +24,52 @@ class Ship extends Transform {
             fire: false,
             mouseX: 0,
             mouseY: 0
-        }
+        };
+
+        this.element.css("background-image",
+            "url('assets/ship" + this._hp + ".png')");
     }
 
     Pre(world: World): void {
-        let x: number = 0;
-        let y: number = 0;
+        let move: Vector = new Vector(0, 0);
+        let pos: Vector;
+        let look: Vector;
+        let degrees: number;
 
-        // Move
+        // MOVE
         if (this._control.left) {
-            x -= 1;
+            move.x -= 1;
         }
         if (this._control.right) {
-            x += 1;
+            move.x += 1;
         }
 
         if (this._control.up) {
-            y -= 1;
+            move.y -= 1;
         }
         if (this._control.down) {
-            y += 1;
+            move.y += 1;
         }
 
-        this.position.x += x * this.SPEED * world.deltaTime;
-        //this.position.y += y * this.SPEED * world.deltaTime;
+        this.position.x += move.x * this.SPEED * world.deltaTime;
+        this.position.y += move.y * this.SPEED * world.deltaTime;
 
-        // Fire
+        // FACE TOWARD MOUSE
+        pos = new Vector(this.position.x + (this.size.x / 2),
+            this.position.y + (this.size.y / 2));
+
+        look = new Vector(this._control.mouseX - pos.x,
+            this._control.mouseY - pos.y);
+
+        this._look = Math.atan(-look.x / look.y) * (180 / Math.PI);
+
+        if (look.y > 0) {
+            this._look += 180;
+        }
+
+        this.element.css({'transform' : 'rotate('+ this._look +'deg)'});
+
+        // FIRE
         if (this._fireCountdown > 0) {
             this._fireCountdown -= world.deltaTime;
         }
@@ -54,10 +77,10 @@ class Ship extends Transform {
         if (this._fireCountdown <= 0 && this._control.fire) {
             this._fireCountdown += (1000 / this.FIRE_RATE);
 
-            this.Fire(world);
+            this.Fire(world, pos);
         }
 
-        // Generate new CatFact
+        // GENERATE NEW CATFACT
         if (this._factCountdown > 0) {
             this._factCountdown -= world.deltaTime;
         }
@@ -67,27 +90,41 @@ class Ship extends Transform {
 
             this.GenerateCatFact(world);
         }
+
+
     }
 
     Post(world: World): void {
     }
 
-    Fire(world: World): void {
-        let bullet: Bullet = <Bullet> Game.AddTransform("Bullet");
-
-        bullet.position.x = (this.position.x + (this.size.x / 2)) - (bullet.width / 2);
-        bullet.position.y = this.position.y;
-        bullet.Init(world);
+    Fire(world: World, pos: Vector): void {
+        let laser: Laser = <Laser> Game.AddTransform("Laser");
+        laser.Init(world, this._look, pos);
     }
 
     GenerateCatFact(world: World): void {
         let catFact: CatFact = <CatFact> Game.AddTransform("CatFact");
 
-        catFact.Init(world);
+        catFact.Init(world, this);
     }
 
     Collision(world: World): void {
-        //CollisionTypes.Ship(world, this, this.collisions);
+        let _this = this;
+
+        this.collisions.forEach(function (collision) {
+            if (collision.transform instanceof Bullet) {
+                _this._hp--;
+
+                if (_this._hp < 1) {
+                    // Game over
+                    Game.state = State.gameOver;
+                }
+                else {
+                    _this.element.css("background-image",
+                        "url('assets/ship" + _this._hp + ".png')");
+                }
+            }
+        });
     }
 
     KeyDown(key: string): void {
@@ -143,5 +180,10 @@ class Ship extends Transform {
     MouseMove(x: number, y: number) {
         this._control.mouseX = x;
         this._control.mouseY = y;
+    }
+
+    AddPoints(points: number) {
+        this._points += points;
+        $("#Score").html("" + this._points);
     }
 }

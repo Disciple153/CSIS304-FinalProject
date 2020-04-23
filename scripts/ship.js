@@ -14,13 +14,16 @@ var __extends = (this && this.__extends) || (function () {
 var Ship = /** @class */ (function (_super) {
     __extends(Ship, _super);
     function Ship() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.SPEED = 0.5;
-        _this.FIRE_RATE = 10; // FPS
-        _this.FACT_RATE = 2; // Seconds until next
-        _this._fireCountdown = 0;
-        _this._factCountdown = 0;
-        return _this;
+        var _this_1 = _super !== null && _super.apply(this, arguments) || this;
+        _this_1.SPEED = 0.5;
+        _this_1.FIRE_RATE = 10; // FPS
+        _this_1.FACT_RATE = 2; // Seconds until next
+        _this_1._fireCountdown = 0;
+        _this_1._factCountdown = 0;
+        _this_1._points = 0;
+        _this_1._look = 0;
+        _this_1._hp = 3;
+        return _this_1;
     }
     Ship.prototype.Init = function (world) {
         this.size.x = 40;
@@ -35,34 +38,45 @@ var Ship = /** @class */ (function (_super) {
             mouseX: 0,
             mouseY: 0
         };
+        this.element.css("background-image", "url('assets/ship" + this._hp + ".png')");
     };
     Ship.prototype.Pre = function (world) {
-        var x = 0;
-        var y = 0;
-        // Move
+        var move = new Vector(0, 0);
+        var pos;
+        var look;
+        var degrees;
+        // MOVE
         if (this._control.left) {
-            x -= 1;
+            move.x -= 1;
         }
         if (this._control.right) {
-            x += 1;
+            move.x += 1;
         }
         if (this._control.up) {
-            y -= 1;
+            move.y -= 1;
         }
         if (this._control.down) {
-            y += 1;
+            move.y += 1;
         }
-        this.position.x += x * this.SPEED * world.deltaTime;
-        //this.position.y += y * this.SPEED * world.deltaTime;
-        // Fire
+        this.position.x += move.x * this.SPEED * world.deltaTime;
+        this.position.y += move.y * this.SPEED * world.deltaTime;
+        // FACE TOWARD MOUSE
+        pos = new Vector(this.position.x + (this.size.x / 2), this.position.y + (this.size.y / 2));
+        look = new Vector(this._control.mouseX - pos.x, this._control.mouseY - pos.y);
+        this._look = Math.atan(-look.x / look.y) * (180 / Math.PI);
+        if (look.y > 0) {
+            this._look += 180;
+        }
+        this.element.css({ 'transform': 'rotate(' + this._look + 'deg)' });
+        // FIRE
         if (this._fireCountdown > 0) {
             this._fireCountdown -= world.deltaTime;
         }
         if (this._fireCountdown <= 0 && this._control.fire) {
             this._fireCountdown += (1000 / this.FIRE_RATE);
-            this.Fire(world);
+            this.Fire(world, pos);
         }
-        // Generate new CatFact
+        // GENERATE NEW CATFACT
         if (this._factCountdown > 0) {
             this._factCountdown -= world.deltaTime;
         }
@@ -73,18 +87,28 @@ var Ship = /** @class */ (function (_super) {
     };
     Ship.prototype.Post = function (world) {
     };
-    Ship.prototype.Fire = function (world) {
-        var bullet = Game.AddTransform("Bullet");
-        bullet.position.x = (this.position.x + (this.size.x / 2)) - (bullet.width / 2);
-        bullet.position.y = this.position.y;
-        bullet.Init(world);
+    Ship.prototype.Fire = function (world, pos) {
+        var laser = Game.AddTransform("Laser");
+        laser.Init(world, this._look, pos);
     };
     Ship.prototype.GenerateCatFact = function (world) {
         var catFact = Game.AddTransform("CatFact");
-        catFact.Init(world);
+        catFact.Init(world, this);
     };
     Ship.prototype.Collision = function (world) {
-        //CollisionTypes.Ship(world, this, this.collisions);
+        var _this = this;
+        this.collisions.forEach(function (collision) {
+            if (collision.transform instanceof Bullet) {
+                _this._hp--;
+                if (_this._hp < 1) {
+                    // Game over
+                    Game.state = State.gameOver;
+                }
+                else {
+                    _this.element.css("background-image", "url('assets/ship" + _this._hp + ".png')");
+                }
+            }
+        });
     };
     Ship.prototype.KeyDown = function (key) {
         switch (key) {
@@ -129,6 +153,10 @@ var Ship = /** @class */ (function (_super) {
     Ship.prototype.MouseMove = function (x, y) {
         this._control.mouseX = x;
         this._control.mouseY = y;
+    };
+    Ship.prototype.AddPoints = function (points) {
+        this._points += points;
+        $("#Score").html("" + this._points);
     };
     return Ship;
 }(Transform));

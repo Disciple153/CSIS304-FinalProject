@@ -11,17 +11,17 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var Bullet = /** @class */ (function (_super) {
-    __extends(Bullet, _super);
-    function Bullet() {
+var Laser = /** @class */ (function (_super) {
+    __extends(Laser, _super);
+    function Laser() {
         var _this_1 = _super !== null && _super.apply(this, arguments) || this;
-        _this_1.SPEED = 100;
+        _this_1.SPEED = 1000;
         _this_1.OFFSET = 30;
-        _this_1.width = 15;
-        _this_1.height = 15;
+        _this_1.width = 7;
+        _this_1.height = 25;
         return _this_1;
     }
-    Bullet.prototype.Init = function (world, direction, origin) {
+    Laser.prototype.Init = function (world, direction, origin) {
         if (direction === void 0) { direction = 0; }
         if (origin === void 0) { origin = new Vector(0, 0); }
         this.size.x = this.width;
@@ -35,18 +35,18 @@ var Bullet = /** @class */ (function (_super) {
         this.element.css({ 'transform': 'rotate(' + direction + 'deg)' });
         this.collidable = true;
     };
-    Bullet.prototype.Pre = function (world) {
+    Laser.prototype.Pre = function (world) {
     };
-    Bullet.prototype.Post = function (world) {
+    Laser.prototype.Post = function (world) {
     };
-    Bullet.prototype.Collision = function (world) {
+    Laser.prototype.Collision = function (world) {
         var _this = this;
         this.collisions.forEach(function (collision) {
             if (collision.transform instanceof Immovable ||
-                collision.transform instanceof Ship) {
+                collision.transform instanceof CatFact) {
                 _this.toDelete = true;
             }
         });
     };
-    return Bullet;
+    return Laser;
 }(Transform));

@@ -1,9 +1,9 @@
-class Bullet extends Transform {
-    SPEED: number = 100;
+class Laser extends Transform {
+    SPEED: number = 1000;
     OFFSET: number = 30;
 
-    public width = 15;
-    public height = 15;
+    public width = 7;
+    public height = 25;
 
     Init(world: World, direction: number = 0, origin: Vector = new Vector(0, 0)): void {
         this.size.x = this.width;
@@ -34,7 +34,7 @@ class Bullet extends Transform {
 
         this.collisions.forEach(function (collision) {
             if (collision.transform instanceof Immovable ||
-                collision.transform instanceof Ship) {
+                collision.transform instanceof CatFact) {
                 _this.toDelete = true;
             }
         });

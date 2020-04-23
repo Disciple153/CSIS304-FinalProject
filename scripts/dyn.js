@@ -91,6 +91,10 @@ var Game = /** @class */ (function () {
         transform = Transform.GetTransform($("#" + id)[0]);
         Game.world.gameObjects[id] = transform;
         Game.world.ids.push(id);
+        if (Game.world.typeIDs[transformClass] == undefined) {
+            Game.world.typeIDs[transformClass] = [];
+        }
+        Game.world.typeIDs[transformClass].push(id);
         if (transform instanceof Immovable) {
             Game.world.immovables.push(id);
         }
@@ -162,15 +166,13 @@ var Game = /** @class */ (function () {
      */
     Game.Play = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var newTime, newPipePos, newPipeCountdown, i, id, index;
+            var newTime, newPipePos, newPipeCountdown, i, id, index, key;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         newPipeCountdown = 0;
                         Game.score = 0;
-                        // Clear and initialize data;
-                        Game.world = undefined;
-                        $("#Game").html("<br><h1 id=\"scoreboard\"></h1>");
+                        // initialize data;
                         Game.world = {
                             gameObjects: {},
                             ids: [],
@@ -179,7 +181,14 @@ var Game = /** @class */ (function () {
                             time: Date.now(),
                             deltaTime: 0,
                             vMultiplier: 0,
-                            player: Game.player
+                            player: Game.player,
+                            typeIDs: {
+                                "Bullet": [],
+                                "Laser": [],
+                                "CatFact": [],
+                                "Ship": [],
+                                "Immovable": []
+                            }
                         };
                         // Create collision for the screen
                         Game.world.gameObjects["topBorder"] = new Immovable(null, 0, -1000, MAX_WIDTH, 1000, "topBorder");
@@ -240,10 +249,6 @@ var Game = /** @class */ (function () {
                         // Correct collisions for GameObjects colliding with Immovables
                         Game.world.immovables.forEach(function (id, hash) {
                             Game.world.gameObjects[id].CorrectCollisions(hash);
-                            // Detect collisions
-                            Game.world.ids.forEach(function (id) {
-                                Game.world.gameObjects[id].DetectCollisions(Game.world);
-                            });
                         });
                         // Correct collisions for GameObjects colliding with movables
                         Game.world.movables.forEach(function (id, hash) {
@@ -279,6 +284,11 @@ var Game = /** @class */ (function () {
                                 index = Game.world.movables.indexOf(id);
                                 if (index !== -1)
                                     Game.world.movables.splice(index, 1);
+                                for (key in Game.world.typeIDs) {
+                                    index = Game.world.typeIDs[key].indexOf(id);
+                                    if (index !== -1)
+                                        Game.world.typeIDs[key].splice(index, 1);
+                                }
                                 // delete key from ids array
                                 Game.world.ids.splice(i, 1);
                                 i--;
@@ -295,7 +305,7 @@ var Game = /** @class */ (function () {
                         _a.label = 3;
                     case 3: return [3 /*break*/, 1];
                     case 4:
-                        $('#Game').hide();
+                        //$('#Game').hide();
                         Game.GameOver();
                         return [2 /*return*/];
                 }
@@ -303,7 +313,7 @@ var Game = /** @class */ (function () {
         });
     };
     Game.GameOver = function () {
-        $("#scoreboard").html("\n        Game Over <br>\n        Score: " + Game.score + "<br>\n        Press the spacebar to play again!");
+        $("#GameOver").show();
     };
     // *****************************************************************************
     // MAIN FUNCTION

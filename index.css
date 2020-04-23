@@ -1,6 +1,14 @@
 * {
     overflow: hidden;
     z-index: 0;
+    cursor: url("assets/reticle.png") 30 15, auto;
+    user-select: none;
+}
+
+html {
+    margin: 0px;
+    height: 100%;
+    width: 100%;
 }
 
 body {
@@ -9,12 +17,17 @@ body {
 }
 
 .Ship {
-    background: url("assets/ship.png");
+    background-size: 100% 100%;
+}
+
+.Laser {
+    background: url("assets/laser.png");
     background-size: 100% 100%;
 }
 
 .Bullet {
-    background-color: aqua;
+    background: url("assets/catBullet.png");
+    background-size: 100% 100%;
 }
 
 .CatFact {
