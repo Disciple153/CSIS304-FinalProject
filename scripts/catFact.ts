@@ -48,6 +48,11 @@ class CatFact extends Transform {
         this._maxHp = this.element.html().length;
         this._hp = this._maxHp;
         this._numGuns = Math.floor((this._maxHp / 10) + 1);
+
+        // Make sure that this ship was created correcly:
+        if (player == null) {
+            this.toDelete = true;
+        }
     }
 
     Pre(world: World): void {

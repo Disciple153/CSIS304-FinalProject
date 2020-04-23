@@ -40,8 +40,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 // *****************************************************************************
 var MAX_WIDTH = $(window).width() - 5;
 var MAX_HEIGHT = $(window).height() - 5;
-var NEW_PIPE_INCREMENT = 2250;
-var PIPE_GAP = 250;
 // *****************************************************************************
 // ENUMS
 // *****************************************************************************
@@ -114,7 +112,7 @@ var Game = /** @class */ (function () {
                 if (key == " ") {
                     $('#Menu').hide();
                     Game.state = State.play;
-                    Game.Play();
+                    Game.Play().then();
                 }
                 break;
             case State.play:
@@ -124,37 +122,29 @@ var Game = /** @class */ (function () {
                 if (key == " ") {
                     $('#GameOver').hide();
                     Game.state = State.play;
-                    Game.Play();
+                    Game.Play().then();
                 }
                 break;
         }
     };
     Game.KeyUp = function (key) {
-        switch (Game.state) {
-            case State.play:
-                Game.world.player.KeyUp(key);
-                break;
+        if (Game.state === State.play) {
+            Game.world.player.KeyUp(key);
         }
     };
     Game.MouseDown = function (x, y) {
-        switch (Game.state) {
-            case State.play:
-                Game.world.player.MouseDown(Game.world, x, y);
-                break;
+        if (Game.state === State.play) {
+            Game.world.player.MouseDown(Game.world, x, y);
         }
     };
     Game.MouseUp = function () {
-        switch (Game.state) {
-            case State.play:
-                Game.world.player.MouseUp();
-                break;
+        if (Game.state === State.play) {
+            Game.world.player.MouseUp();
         }
     };
     Game.MouseMove = function (x, y) {
-        switch (Game.state) {
-            case State.play:
-                Game.world.player.MouseMove(x, y);
-                break;
+        if (Game.state === State.play) {
+            Game.world.player.MouseMove(x, y);
         }
     };
     Game.Menu = function () {
@@ -166,11 +156,10 @@ var Game = /** @class */ (function () {
      */
     Game.Play = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var newTime, newPipePos, newPipeCountdown, i, id, index, key;
+            var newTime, i, id, index, key;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        newPipeCountdown = 0;
                         Game.score = 0;
                         // initialize data;
                         Game.world = {
@@ -330,18 +319,23 @@ var Game = /** @class */ (function () {
 // CONTROLS
 // *****************************************************************************
 // These are deprecated, but there is no real alternative.
+// noinspection JSDeprecatedSymbols
 $(document).keydown(function (e) {
     Game.KeyDown(e.originalEvent.key);
 });
+// noinspection JSDeprecatedSymbols
 $(document).keyup(function (e) {
     Game.KeyUp(e.originalEvent.key);
 });
+// noinspection JSDeprecatedSymbols
 $(document).mousedown(function (e) {
     Game.MouseDown(e.originalEvent.clientX, e.originalEvent.clientY);
 });
+// noinspection JSDeprecatedSymbols
 $(document).mouseup(function () {
     Game.MouseUp();
 });
+// noinspection JSDeprecatedSymbols
 $(document).mousemove(function (e) {
     Game.MouseMove(e.originalEvent.clientX, e.originalEvent.clientY);
 });

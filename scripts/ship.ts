@@ -10,6 +10,7 @@ class Ship extends Transform {
     private _points: number = 0;
     private _look: number = 0;
     private _hp: number = 3;
+    private _numFacts: number = 0;
 
     Init(world: World): void {
         this.size.x = 40;
@@ -26,6 +27,7 @@ class Ship extends Transform {
             mouseY: 0
         };
 
+        this._factCountdown = 0;
         this.element.css("background-image",
             "url('assets/ship" + this._hp + ".png')");
     }
@@ -34,7 +36,6 @@ class Ship extends Transform {
         let move: Vector = new Vector(0, 0);
         let pos: Vector;
         let look: Vector;
-        let degrees: number;
 
         // MOVE
         if (this._control.left) {

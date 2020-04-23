@@ -23,6 +23,7 @@ var Ship = /** @class */ (function (_super) {
         _this_1._points = 0;
         _this_1._look = 0;
         _this_1._hp = 3;
+        _this_1._numFacts = 0;
         return _this_1;
     }
     Ship.prototype.Init = function (world) {
@@ -38,13 +39,13 @@ var Ship = /** @class */ (function (_super) {
             mouseX: 0,
             mouseY: 0
         };
+        this._factCountdown = 0;
         this.element.css("background-image", "url('assets/ship" + this._hp + ".png')");
     };
     Ship.prototype.Pre = function (world) {
         var move = new Vector(0, 0);
         var pos;
         var look;
-        var degrees;
         // MOVE
         if (this._control.left) {
             move.x -= 1;

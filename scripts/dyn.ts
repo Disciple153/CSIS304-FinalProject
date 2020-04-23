@@ -6,8 +6,6 @@
 // *****************************************************************************
 const MAX_WIDTH = $(window).width() - 5;
 const MAX_HEIGHT = $(window).height() - 5;
-const NEW_PIPE_INCREMENT: number = 2250;
-const PIPE_GAP: number = 250;
 
 // *****************************************************************************
 // ENUMS
@@ -136,7 +134,7 @@ class Game {
                 if (key == " ") {
                     $('#Menu').hide();
                     Game.state = State.play;
-                    Game.Play();
+                    Game.Play().then();
                 }
                 break;
 
@@ -149,41 +147,33 @@ class Game {
                 if (key == " ") {
                     $('#GameOver').hide();
                     Game.state = State.play;
-                    Game.Play();
+                    Game.Play().then();
                 }
                 break;
         }
     }
 
     static KeyUp(key: string): void {
-        switch (Game.state) {
-            case State.play:
-                Game.world.player.KeyUp(key);
-                break;
+        if (Game.state === State.play) {
+            Game.world.player.KeyUp(key);
         }
     }
 
     static MouseDown(x: number, y: number) {
-        switch (Game.state) {
-            case State.play:
-                Game.world.player.MouseDown(Game.world, x, y);
-                break;
+        if (Game.state === State.play) {
+            Game.world.player.MouseDown(Game.world, x, y);
         }
     }
 
     static MouseUp() {
-        switch (Game.state) {
-            case State.play:
-                Game.world.player.MouseUp();
-                break;
+        if (Game.state === State.play) {
+            Game.world.player.MouseUp();
         }
     }
 
     static MouseMove(x: number, y: number) {
-        switch (Game.state) {
-            case State.play:
-                Game.world.player.MouseMove(x, y);
-                break;
+        if (Game.state === State.play) {
+            Game.world.player.MouseMove(x, y);
         }
     }
 
@@ -198,8 +188,6 @@ class Game {
      */
     static async Play() {
         let newTime: number;
-        let newPipePos: number;
-        let newPipeCountdown: number = 0;
 
         Game.score = 0;
 
@@ -379,21 +367,27 @@ class Game {
 // CONTROLS
 // *****************************************************************************
 // These are deprecated, but there is no real alternative.
+// noinspection JSDeprecatedSymbols
 $(document).keydown(function(e) {
     Game.KeyDown(e.originalEvent.key);
 });
+
+// noinspection JSDeprecatedSymbols
 $(document).keyup(function(e) {
     Game.KeyUp(e.originalEvent.key);
 });
 
+// noinspection JSDeprecatedSymbols
 $(document).mousedown(function (e) {
     Game.MouseDown(e.originalEvent.clientX, e.originalEvent.clientY);
 });
 
+// noinspection JSDeprecatedSymbols
 $(document).mouseup(function () {
     Game.MouseUp();
 });
 
+// noinspection JSDeprecatedSymbols
 $(document).mousemove(function (e) {
     Game.MouseMove(e.originalEvent.clientX, e.originalEvent.clientY);
 });
