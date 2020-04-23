@@ -26,15 +26,39 @@
     </head>
     <body onload="Game.main();">
         <div id="Menu">
-            <br>
             <h1>Welcome to Cat Facts Bullet Hell!</h1>
             <div class="center">
-                <p>Controls: WASD to move. Click to shoot.</p>
-                <p>Press the space bar to begin!</p>
+                <table>
+                    <tr>
+                        <th>
+                            Controls:
+                        </th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>
+                            Move:
+                        </td>
+                        <td>
+                            <img src="assets/wasd.png" alt="WASD" class="icon">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>
+                            Shoot:
+                        </td>
+                        <td>
+                            <img src="assets/mouse.png" alt="WASD" class="icon">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">Press the space bar to begin!</td>
+                    </tr>
+                </table>
             </div>
         </div>
         <div id="Game" hidden>
-            <br>
             <div id="Scoreboard">
                 <h1>Score:</h1>
                 <h1 id="Score">0</h1>

@@ -17,8 +17,8 @@ class Laser extends Transform {
 
         this._normalV = new Vector(this.velocity.x, this.velocity.y);
 
-        this.position.x = origin.x + (this.velocity.x * this.OFFSET);
-        this.position.y = origin.y + (this.velocity.y * this.OFFSET);
+        this.position.x = origin.x + (this.velocity.x * this.OFFSET) - (this.size.x / 2);
+        this.position.y = origin.y + (this.velocity.y * this.OFFSET) - (this.size.y / 2);
 
         this.velocity.x *= this.SPEED;
         this.velocity.y *= this.SPEED;
