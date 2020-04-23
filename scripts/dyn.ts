@@ -189,7 +189,7 @@ class Game {
     static async Play() {
         let newTime: number;
 
-        Game.score = 0;
+        $("#Score").html("" + 0);
 
         // initialize data;
         Game.world = {
@@ -351,6 +351,22 @@ class Game {
     }
 
     static GameOver() {
+        let highScore = parseInt(document.cookie);
+
+        if (isNaN(highScore)) {
+            highScore = 0;
+            document.cookie = "" + 0;
+        }
+
+        // Check High score
+        if (Game.world.player.points > highScore) {
+            highScore = Game.world.player.points;
+            document.cookie = "" + highScore;
+        }
+
+        $("#HighScore").html("" + highScore);
+        $("#ThisScore").html("" + Game.world.player.points);
+
         $("#GameOver").show();
     }
 

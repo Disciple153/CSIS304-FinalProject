@@ -25,7 +25,6 @@ class Bullet extends Transform {
 
     Pre(world: World): void {
     }
-
     Post(world: World): void {
     }
 

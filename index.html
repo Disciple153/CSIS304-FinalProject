@@ -21,22 +21,30 @@
         <script src="scripts/ship.js"></script>
         <script src="scripts/laser.js"></script>
         <script src="scripts/bullet.js"></script>
+        <script src="scripts/effect.js"></script>
         <script src="scripts/catFact.js"></script>
     </head>
     <body onload="Game.main();">
         <div id="Menu">
+            <br>
             <h1>Welcome to Cat Facts Bullet Hell!</h1>
-            <p>Controls: WASD to move. Click to shoot.</p>
-            <p>Press the space bar to begin!</p>
-        </div>
-        <div id="Game" hidden>
-            <div id="Scoreboard">
-                <h1>Score:</h1>
-                <div id="Score"></div>
+            <div class="center">
+                <p>Controls: WASD to move. Click to shoot.</p>
+                <p>Press the space bar to begin!</p>
             </div>
         </div>
-        <div id="GameOver" hidden>
-            <h1>Game Over</h1>
+        <div id="Game" hidden>
+            <br>
+            <div id="Scoreboard">
+                <h1>Score:</h1>
+                <h1 id="Score">0</h1>
+            </div>
+        </div>
+        <div id="GameOver" class="center" hidden>
+            <h1>Game Over</h1><br>
+            <h1>‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾</h1><br>
+            <h2>High score: </h2><h2 id="HighScore"></h2><br>
+            <h2>Your score: </h2><h2 id="ThisScore"></h2><br>
             <p>Press the space bar to play again!</p>
         </div>
         <div id="Debug"></div>

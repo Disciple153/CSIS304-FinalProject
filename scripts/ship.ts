@@ -3,11 +3,11 @@ class Ship extends Transform {
     FIRE_RATE: number = 10;     // FPS
     FACT_RATE: number = 2;      // Seconds until next
 
+    public points: number = 0;
 
     private _control: Control;
     private _fireCountdown: number = 0;
     private _factCountdown: number = 0;
-    private _points: number = 0;
     private _look: number = 0;
     private _hp: number = 3;
     private _numFacts: number = 0;
@@ -188,8 +188,8 @@ class Ship extends Transform {
     }
 
     AddPoints(points: number) {
-        this._points += points;
-        $("#Score").html("" + this._points);
+        this.points += points;
+        $("#Score").html("" + this.points);
     }
 
     FactDestroyed() {

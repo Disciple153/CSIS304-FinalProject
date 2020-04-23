@@ -18,9 +18,9 @@ var Ship = /** @class */ (function (_super) {
         _this_1.SPEED = 0.5;
         _this_1.FIRE_RATE = 10; // FPS
         _this_1.FACT_RATE = 2; // Seconds until next
+        _this_1.points = 0;
         _this_1._fireCountdown = 0;
         _this_1._factCountdown = 0;
-        _this_1._points = 0;
         _this_1._look = 0;
         _this_1._hp = 3;
         _this_1._numFacts = 0;
@@ -159,8 +159,8 @@ var Ship = /** @class */ (function (_super) {
         this._control.mouseY = y;
     };
     Ship.prototype.AddPoints = function (points) {
-        this._points += points;
-        $("#Score").html("" + this._points);
+        this.points += points;
+        $("#Score").html("" + this.points);
     };
     Ship.prototype.FactDestroyed = function () {
         this._numFacts--;
