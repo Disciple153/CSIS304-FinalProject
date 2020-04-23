@@ -84,6 +84,7 @@ var CatFact = /** @class */ (function (_super) {
                 _this._player.AddPoints(1);
                 if (_this._hp <= 0) {
                     _this._player.AddPoints(_this._maxHp);
+                    _this._player.FactDestroyed();
                     _this.toDelete = true;
                 }
             }

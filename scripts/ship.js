@@ -24,6 +24,7 @@ var Ship = /** @class */ (function (_super) {
         _this_1._look = 0;
         _this_1._hp = 3;
         _this_1._numFacts = 0;
+        _this_1._factsDestroyed = 0;
         return _this_1;
     }
     Ship.prototype.Init = function (world) {
@@ -81,7 +82,8 @@ var Ship = /** @class */ (function (_super) {
         if (this._factCountdown > 0) {
             this._factCountdown -= world.deltaTime;
         }
-        if (this._factCountdown <= 0) {
+        if (this._factCountdown <= 0 &&
+            this._numFacts < (0.25 * this._factsDestroyed) + 1) {
             this._factCountdown += this.FACT_RATE * 1000;
             this.GenerateCatFact(world);
         }
@@ -94,6 +96,7 @@ var Ship = /** @class */ (function (_super) {
     };
     Ship.prototype.GenerateCatFact = function (world) {
         var catFact = Game.AddTransform("CatFact");
+        this._numFacts++;
         catFact.Init(world, this);
     };
     Ship.prototype.Collision = function (world) {
@@ -158,6 +161,10 @@ var Ship = /** @class */ (function (_super) {
     Ship.prototype.AddPoints = function (points) {
         this._points += points;
         $("#Score").html("" + this._points);
+    };
+    Ship.prototype.FactDestroyed = function () {
+        this._numFacts--;
+        this._factsDestroyed++;
     };
     return Ship;
 }(Transform));

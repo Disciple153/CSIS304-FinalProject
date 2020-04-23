@@ -11,6 +11,7 @@ class Ship extends Transform {
     private _look: number = 0;
     private _hp: number = 3;
     private _numFacts: number = 0;
+    private _factsDestroyed: number = 0;
 
     Init(world: World): void {
         this.size.x = 40;
@@ -86,7 +87,8 @@ class Ship extends Transform {
             this._factCountdown -= world.deltaTime;
         }
 
-        if (this._factCountdown <= 0) {
+        if (this._factCountdown <= 0 &&
+                this._numFacts < (0.25 * this._factsDestroyed) + 1) {
             this._factCountdown += this.FACT_RATE * 1000;
 
             this.GenerateCatFact(world);
@@ -105,6 +107,8 @@ class Ship extends Transform {
 
     GenerateCatFact(world: World): void {
         let catFact: CatFact = <CatFact> Game.AddTransform("CatFact");
+
+        this._numFacts++;
 
         catFact.Init(world, this);
     }
@@ -186,5 +190,10 @@ class Ship extends Transform {
     AddPoints(points: number) {
         this._points += points;
         $("#Score").html("" + this._points);
+    }
+
+    FactDestroyed() {
+        this._numFacts--;
+        this._factsDestroyed++;
     }
 }
