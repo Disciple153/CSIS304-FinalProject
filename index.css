@@ -55,6 +55,11 @@ table tr td:nth-child(3) {
 #GameOver {
     background-color: #514E3F40;
     padding: 20px;
+    z-index: 4;
+}
+
+#Scoreboard {
+    z-index: 3;
 }
 
 .center {
@@ -70,22 +75,27 @@ table tr td:nth-child(3) {
 
 .Ship {
     background-size: 100% 100%;
+    z-index: 1;
 }
 
 .Effect {
     background-size: 100% 100%;
+    z-index: 2;
 }
 
 .Laser {
     background-color: white;
     background-size: 100% 100%;
+    z-index: 2
 }
 
 .Bullet {
     background: url("assets/catBullet.png");
     background-size: 100% 100%;
+    z-index: -1;
 }
 
 .CatFact {
     background-color: #514E3F20;
+    z-index: 0;
 }

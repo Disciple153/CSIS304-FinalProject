@@ -19,7 +19,6 @@ var Sound = /** @class */ (function () {
         this._sound.volume = volume;
         this._sound.currentTime = 0;
         this._sound.play().then();
-        console.log(this._sound.currentTime);
     };
     Sound.prototype.Stop = function () {
         var _this = this;

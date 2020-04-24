@@ -20,6 +20,7 @@ var CatFact = /** @class */ (function (_super) {
         _this_1.ROTATION_SPEED = 0.05;
         _this_1.FIRE_RATE = 2;
         _this_1.FIRE_ROTATE = 0.05;
+        _this_1.GUNS_RATIO = 20;
         _this_1._currentDirection = 0;
         _this_1._targetDirection = 0;
         _this_1._fireDirection = 0;
@@ -29,29 +30,34 @@ var CatFact = /** @class */ (function (_super) {
     }
     CatFact.prototype.Init = function (world, player) {
         if (player === void 0) { player = null; }
+        var _this = this;
         this._player = player;
-        this.size.y = 20;
         this.position.x = 20;
-        this.position.y = -50;
+        this.position.y = -100;
         this.velocity.y = this.FALL_VELOCITY;
         this.collidable = false;
         this.element.css("width", "auto");
+        this.element.css("height", "auto");
+        _this._fact = "Error: Cat Fact not loaded.";
         //"https://cat-fact.herokuapp.com/facts/random"
         $.ajax({
-            url: "https://cat-fact.herokuapp.com/facts/random",
-            dataType: "jsonp",
-            success: function (x) {
-                console.log("SUCCESS\n" + x); // + "\n" + y + "\n" + z);
+            url: "https://catfact.ninja/fact",
+            success: function (data) {
+                console.log(JSON.stringify(data));
+                _this._fact = data.fact;
+                _this.element.html(_this._fact);
+                _this._maxHp = _this._fact.length;
+                _this._hp = _this._maxHp;
+                _this._numGuns = Math.floor((_this._maxHp / _this.GUNS_RATIO) + 1);
             },
             error: function (x, y, z) {
                 console.log("ERROR\n" + JSON.stringify(x) + "\n" + y + "\n" + z);
+                _this.element.html(_this._fact);
             }
         });
-        this.element.html("SAMPLE CAT FACT");
-        this._sizeAdjusted = false;
-        this._maxHp = this.element.html().length;
-        this._hp = this._maxHp;
-        this._numGuns = Math.floor((this._maxHp / 10) + 1);
+        // Prepare to adjust the size of the CatFact once the text has loaded.
+        this._heightAdjusted = false;
+        this._widthAdjusted = true;
         // Make sure that this ship was created correcly:
         if (player == null) {
             this.toDelete = true;
@@ -59,15 +65,37 @@ var CatFact = /** @class */ (function (_super) {
     };
     CatFact.prototype.Pre = function (world) {
         // Adjust size once text is loaded.
-        if (!this._sizeAdjusted) {
-            this.size.x = this.element.width();
-            this._sizeAdjusted = true;
-            this.position.x = Math.floor(Math.random() * (MAX_WIDTH - this.size.x));
+        if (!this._heightAdjusted && this._fact == this.element.html()) {
+            // Get the default width and height of the fact
+            var length_1 = this.element.width();
+            this._textHeight = this.element.height();
+            // Make the fact teke up no more than one quarter of the screen
+            if (length_1 > MAX_WIDTH / 4) {
+                this.size.x = MAX_WIDTH / 4;
+            }
+            else {
+                this.size.x = length_1;
+            }
+            // Adjust the height to hold all of the text.
+            this.size.y = (Math.floor(length_1 / (MAX_WIDTH / 4))
+                + 1) * this._textHeight;
+            // Get ready to trim the excess of the box of the right.
+            this._heightAdjusted = true;
+            this._widthAdjusted = false;
         }
-        // Enable fact once it has reached a point.
+        else if (!this._widthAdjusted) {
+            // Trim the excess of the box on the right.
+            this.size.x = this.element.width();
+            // Place the box in a valid position above the play area.
+            this.position.x = Math.floor(Math.random() * (MAX_WIDTH - this.size.x));
+            // Done adjusting
+            this._widthAdjusted = true;
+        }
+        // Enable fact once it has reached teh play area.
         if (!this.collidable && this.position.y > MAX_HEIGHT / 4) {
             this.collidable = true;
         }
+        // Once Fact is enabled, float around and fire.
         if (this.collidable) {
             this.Rotate(world);
             this.Fire(world);
