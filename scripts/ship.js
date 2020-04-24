@@ -25,6 +25,7 @@ var Ship = /** @class */ (function (_super) {
         _this_1._hp = 3;
         _this_1._numFacts = 0;
         _this_1._factsDestroyed = 0;
+        _this_1._laserSoundIndex = 0;
         return _this_1;
     }
     Ship.prototype.Init = function (world) {
@@ -40,6 +41,11 @@ var Ship = /** @class */ (function (_super) {
             mouseX: 0,
             mouseY: 0
         };
+        this._laserSounds = [];
+        for (var i = 0; i < 4; i++) {
+            this._laserSounds.push(new Sound("assets/laser.mp3"));
+        }
+        this._hp = 3;
         this._factCountdown = 0;
         this.element.css("background-image", "url('assets/ship" + this._hp + ".png')");
     };
@@ -93,6 +99,10 @@ var Ship = /** @class */ (function (_super) {
     Ship.prototype.Fire = function (world, pos) {
         var laser = Game.AddTransform("Laser");
         laser.Init(world, this._look, pos);
+        this._laserSounds[this._laserSoundIndex++].Play(0.05);
+        if (this._laserSoundIndex >= this._laserSounds.length) {
+            this._laserSoundIndex = 0;
+        }
     };
     Ship.prototype.GenerateCatFact = function (world) {
         var catFact = Game.AddTransform("CatFact");

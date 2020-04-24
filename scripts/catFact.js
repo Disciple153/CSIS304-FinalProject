@@ -17,7 +17,7 @@ var CatFact = /** @class */ (function (_super) {
         var _this_1 = _super !== null && _super.apply(this, arguments) || this;
         _this_1.FALL_VELOCITY = 300;
         _this_1.SPEED = 100;
-        _this_1.ROTATION_SPEED = 0.01;
+        _this_1.ROTATION_SPEED = 0.05;
         _this_1.FIRE_RATE = 2;
         _this_1.FIRE_ROTATE = 0.05;
         _this_1._currentDirection = 0;
@@ -37,17 +37,16 @@ var CatFact = /** @class */ (function (_super) {
         this.collidable = false;
         this.element.css("width", "auto");
         //"https://cat-fact.herokuapp.com/facts/random"
-        //$.ajax({
-        //    url: "https://cat-fact.herokuapp.com/facts/random",
-        //    dataType: "jsonp",
-        //    data: {accept: "application/json"},
-        //    success: function (x, y, z) {
-        //        console.log("SUCCESS\n" + x + "\n" + y + "\n" + z);
-        //    },
-        //    error: function (x, y, z) {
-        //        console.log("ERROR\n" + JSON.stringify(x) + "\n" + y + "\n" + z);
-        //    }
-        //});
+        $.ajax({
+            url: "https://cat-fact.herokuapp.com/facts/random",
+            dataType: "jsonp",
+            success: function (x) {
+                console.log("SUCCESS\n" + x); // + "\n" + y + "\n" + z);
+            },
+            error: function (x, y, z) {
+                console.log("ERROR\n" + JSON.stringify(x) + "\n" + y + "\n" + z);
+            }
+        });
         this.element.html("SAMPLE CAT FACT");
         this._sizeAdjusted = false;
         this._maxHp = this.element.html().length;
@@ -128,3 +127,7 @@ var CatFact = /** @class */ (function (_super) {
     };
     return CatFact;
 }(Transform));
+function n() {
+    var userAgeInput = document.getElementById("userAge");
+    userAgeInput.style.backgroundColor = "green";
+}

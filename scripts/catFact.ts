@@ -1,7 +1,8 @@
 class CatFact extends Transform {
+
     FALL_VELOCITY: number = 300;
     SPEED: number = 100;
-    ROTATION_SPEED: number = 0.01;
+    ROTATION_SPEED: number = 0.05;
     FIRE_RATE: number = 2;
     FIRE_ROTATE: number = 0.05;
 
@@ -14,6 +15,7 @@ class CatFact extends Transform {
     private _fireDirection: number = 0;
     private _numGuns: number = 0;
     private _fireCountdown: number = 0;
+    private _noise;
 
     Init(world: World, player: Ship = null): void {
         this._player = player;
@@ -30,17 +32,16 @@ class CatFact extends Transform {
         this.element.css("width", "auto");
 
         //"https://cat-fact.herokuapp.com/facts/random"
-        //$.ajax({
-        //    url: "https://cat-fact.herokuapp.com/facts/random",
-        //    dataType: "jsonp",
-        //    data: {accept: "application/json"},
-        //    success: function (x, y, z) {
-        //        console.log("SUCCESS\n" + x + "\n" + y + "\n" + z);
-        //    },
-        //    error: function (x, y, z) {
-        //        console.log("ERROR\n" + JSON.stringify(x) + "\n" + y + "\n" + z);
-        //    }
-        //});
+        $.ajax({
+            url: "https://cat-fact.herokuapp.com/facts/random",
+            dataType: "jsonp",
+            success: function (x){//}, y, z) {
+                console.log("SUCCESS\n" + x);// + "\n" + y + "\n" + z);
+            },
+            error: function (x, y, z) {
+                console.log("ERROR\n" + JSON.stringify(x) + "\n" + y + "\n" + z);
+            }
+        });
 
         this.element.html("SAMPLE CAT FACT");
         this._sizeAdjusted = false;
@@ -73,6 +74,8 @@ class CatFact extends Transform {
             this.Rotate(world);
             this.Fire(world);
         }
+
+
 
 
     }
@@ -146,4 +149,9 @@ class CatFact extends Transform {
             }
         }
     }
+}
+
+function n() {
+    var userAgeInput = document.getElementById("userAge");
+    userAgeInput.style.backgroundColor =  "green";
 }

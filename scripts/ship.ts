@@ -12,6 +12,8 @@ class Ship extends Transform {
     private _hp: number = 3;
     private _numFacts: number = 0;
     private _factsDestroyed: number = 0;
+    private _laserSounds: Sound[];
+    private _laserSoundIndex: number = 0;
 
     Init(world: World): void {
         this.size.x = 40;
@@ -28,6 +30,12 @@ class Ship extends Transform {
             mouseY: 0
         };
 
+        this._laserSounds = [];
+        for (let i = 0; i < 4 ; i++){
+            this._laserSounds.push(new Sound("assets/laser.mp3"));
+        }
+
+        this._hp = 3;
         this._factCountdown = 0;
         this.element.css("background-image",
             "url('assets/ship" + this._hp + ".png')");
@@ -103,6 +111,10 @@ class Ship extends Transform {
     Fire(world: World, pos: Vector): void {
         let laser: Laser = <Laser> Game.AddTransform("Laser");
         laser.Init(world, this._look, pos);
+        this._laserSounds[this._laserSoundIndex++].Play(0.05);
+        if (this._laserSoundIndex >= this._laserSounds.length) {
+            this._laserSoundIndex = 0;
+        }
     }
 
     GenerateCatFact(world: World): void {

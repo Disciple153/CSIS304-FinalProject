@@ -1,6 +1,6 @@
 class Laser extends Transform {
     SPEED: number = 1000;
-    OFFSET: number = 30;
+    OFFSET: number = 25;
 
     public width = 3;
     public height = 35;

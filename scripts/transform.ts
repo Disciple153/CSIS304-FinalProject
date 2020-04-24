@@ -2,7 +2,6 @@
  * Transform
  * Defines an object's position, size and velocity along with other key information.
  */
-
 class Transform {
     public GRAVITY: number = 0;
     public RESISTANCE: number = 0;

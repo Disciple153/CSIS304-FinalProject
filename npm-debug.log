@@ -1,0 +1,336 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'i', '@types/jquery' ]
+2 info using npm@3.5.2
+3 info using node@v4.2.6
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData @types/jquery
+8 silly fetchNamedPackageData @types/jquery
+9 silly mapToRegistry name @types/jquery
+10 silly mapToRegistry scope (from package name) @types
+11 verbose mapToRegistry no registry URL found in name for scope @types
+12 silly mapToRegistry using default registry
+13 silly mapToRegistry registry https://registry.npmjs.org/
+14 silly mapToRegistry uri https://registry.npmjs.org/@types%2fjquery
+15 verbose request uri https://registry.npmjs.org/@types%2fjquery
+16 verbose request no auth needed
+17 info attempt registry request try #1 at 4:01:00 PM
+18 verbose request id dbf6b907b9ebc753
+19 verbose etag W/"0e3c05416936319eb77d3e403127ff44"
+20 verbose lastModified Wed, 15 Apr 2020 23:27:16 GMT
+21 http request GET https://registry.npmjs.org/@types%2fjquery
+22 http 304 https://registry.npmjs.org/@types%2fjquery
+23 verbose headers { date: 'Thu, 23 Apr 2020 23:01:02 GMT',
+23 verbose headers   connection: 'keep-alive',
+23 verbose headers   'set-cookie': [ '__cfduid=d46e038330a3f3ac8834b8880647ab4301587682862; expires=Sat, 23-May-20 23:01:02 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+23 verbose headers   'cf-ray': '588b3443af4dfdb5-PDX',
+23 verbose headers   age: '0',
+23 verbose headers   'cache-control': 'public, max-age=300',
+23 verbose headers   etag: '"0e3c05416936319eb77d3e403127ff44"',
+23 verbose headers   'last-modified': 'Wed, 15 Apr 2020 23:27:16 GMT',
+23 verbose headers   vary: 'Accept-Encoding',
+23 verbose headers   'cf-cache-status': 'HIT',
+23 verbose headers   'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+23 verbose headers   server: 'cloudflare',
+23 verbose headers   'cf-request-id': '024adefe440000fdb5088a8200000001' }
+24 silly get cb [ 304,
+24 silly get   { date: 'Thu, 23 Apr 2020 23:01:02 GMT',
+24 silly get     connection: 'keep-alive',
+24 silly get     'set-cookie': [ '__cfduid=d46e038330a3f3ac8834b8880647ab4301587682862; expires=Sat, 23-May-20 23:01:02 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+24 silly get     'cf-ray': '588b3443af4dfdb5-PDX',
+24 silly get     age: '0',
+24 silly get     'cache-control': 'public, max-age=300',
+24 silly get     etag: '"0e3c05416936319eb77d3e403127ff44"',
+24 silly get     'last-modified': 'Wed, 15 Apr 2020 23:27:16 GMT',
+24 silly get     vary: 'Accept-Encoding',
+24 silly get     'cf-cache-status': 'HIT',
+24 silly get     'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+24 silly get     server: 'cloudflare',
+24 silly get     'cf-request-id': '024adefe440000fdb5088a8200000001' } ]
+25 verbose etag https://registry.npmjs.org/@types%2fjquery from cache
+26 verbose get saving @types/jquery to /home/Disciple153/.npm/registry.npmjs.org/_40types_252fjquery/.cache.json
+27 silly install normalizeTree
+28 silly loadCurrentTree Finishing
+29 silly loadIdealTree Starting
+30 silly install loadIdealTree
+31 silly cloneCurrentTree Starting
+32 silly install cloneCurrentTreeToIdealTree
+33 silly cloneCurrentTree Finishing
+34 silly loadShrinkwrap Starting
+35 silly install loadShrinkwrap
+36 silly loadShrinkwrap Finishing
+37 silly loadAllDepsIntoIdealTree Starting
+38 silly install loadAllDepsIntoIdealTree
+39 silly resolveWithNewModule @types/jquery@3.3.35 checking installable status
+40 silly cache add args [ '@types/jquery', null ]
+41 verbose cache add spec @types/jquery
+42 silly cache add parsed spec Result {
+42 silly cache add   raw: '@types/jquery',
+42 silly cache add   scope: '@types',
+42 silly cache add   name: '@types/jquery',
+42 silly cache add   rawSpec: '',
+42 silly cache add   spec: 'latest',
+42 silly cache add   type: 'tag' }
+43 silly addNamed @types/jquery@latest
+44 verbose addNamed "latest" is being treated as a dist-tag for @types/jquery
+45 info addNameTag [ '@types/jquery', 'latest' ]
+46 silly mapToRegistry name @types/jquery
+47 silly mapToRegistry scope (from package name) @types
+48 verbose mapToRegistry no registry URL found in name for scope @types
+49 silly mapToRegistry using default registry
+50 silly mapToRegistry registry https://registry.npmjs.org/
+51 silly mapToRegistry uri https://registry.npmjs.org/@types%2fjquery
+52 verbose addNameTag registry:https://registry.npmjs.org/@types%2fjquery not in flight; fetching
+53 verbose get https://registry.npmjs.org/@types%2fjquery not expired, no request
+54 silly addNameTag next cb for @types/jquery with tag latest
+55 silly addNamed @types/jquery@3.3.35
+56 verbose addNamed "3.3.35" is a plain semver version for @types/jquery
+57 silly cache afterAdd @types/jquery@3.3.35
+58 verbose afterAdd /home/Disciple153/.npm/@types/jquery/3.3.35/package/package.json not in flight; writing
+59 verbose afterAdd /home/Disciple153/.npm/@types/jquery/3.3.35/package/package.json written
+60 silly fetchNamedPackageData @types/sizzle
+61 silly mapToRegistry name @types/sizzle
+62 silly mapToRegistry scope (from package name) @types
+63 verbose mapToRegistry no registry URL found in name for scope @types
+64 silly mapToRegistry using default registry
+65 silly mapToRegistry registry https://registry.npmjs.org/
+66 silly mapToRegistry uri https://registry.npmjs.org/@types%2fsizzle
+67 verbose request uri https://registry.npmjs.org/@types%2fsizzle
+68 verbose request no auth needed
+69 info attempt registry request try #1 at 4:01:02 PM
+70 verbose etag W/"5ddd0ff0e08f6095af6ed8824d3ded41"
+71 verbose lastModified Thu, 27 Feb 2020 18:34:50 GMT
+72 http request GET https://registry.npmjs.org/@types%2fsizzle
+73 http 304 https://registry.npmjs.org/@types%2fsizzle
+74 verbose headers { date: 'Thu, 23 Apr 2020 23:01:04 GMT',
+74 verbose headers   connection: 'keep-alive',
+74 verbose headers   'set-cookie': [ '__cfduid=d9b5bf69a0f9c68eca0ea0934d3d050bc1587682864; expires=Sat, 23-May-20 23:01:04 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+74 verbose headers   'cf-ray': '588b344e0e17fdb9-PDX',
+74 verbose headers   age: '6388',
+74 verbose headers   'cache-control': 'public, max-age=300',
+74 verbose headers   etag: '"5ddd0ff0e08f6095af6ed8824d3ded41"',
+74 verbose headers   'last-modified': 'Thu, 27 Feb 2020 18:34:50 GMT',
+74 verbose headers   vary: 'Accept-Encoding',
+74 verbose headers   'cf-cache-status': 'HIT',
+74 verbose headers   'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+74 verbose headers   server: 'cloudflare',
+74 verbose headers   'cf-request-id': '024adf04c40000fdb9d29d0200000001' }
+75 silly get cb [ 304,
+75 silly get   { date: 'Thu, 23 Apr 2020 23:01:04 GMT',
+75 silly get     connection: 'keep-alive',
+75 silly get     'set-cookie': [ '__cfduid=d9b5bf69a0f9c68eca0ea0934d3d050bc1587682864; expires=Sat, 23-May-20 23:01:04 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+75 silly get     'cf-ray': '588b344e0e17fdb9-PDX',
+75 silly get     age: '6388',
+75 silly get     'cache-control': 'public, max-age=300',
+75 silly get     etag: '"5ddd0ff0e08f6095af6ed8824d3ded41"',
+75 silly get     'last-modified': 'Thu, 27 Feb 2020 18:34:50 GMT',
+75 silly get     vary: 'Accept-Encoding',
+75 silly get     'cf-cache-status': 'HIT',
+75 silly get     'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+75 silly get     server: 'cloudflare',
+75 silly get     'cf-request-id': '024adf04c40000fdb9d29d0200000001' } ]
+76 verbose etag https://registry.npmjs.org/@types%2fsizzle from cache
+77 verbose get saving @types/sizzle to /home/Disciple153/.npm/registry.npmjs.org/_40types_252fsizzle/.cache.json
+78 silly resolveWithNewModule @types/sizzle@2.3.2 checking installable status
+79 silly cache add args [ '@types/sizzle@*', null ]
+80 verbose cache add spec @types/sizzle@*
+81 silly cache add parsed spec Result {
+81 silly cache add   raw: '@types/sizzle@*',
+81 silly cache add   scope: '@types',
+81 silly cache add   name: '@types/sizzle',
+81 silly cache add   rawSpec: '*',
+81 silly cache add   spec: '*',
+81 silly cache add   type: 'range' }
+82 silly addNamed @types/sizzle@*
+83 verbose addNamed "*" is a valid semver range for @types/sizzle
+84 silly addNameRange { name: '@types/sizzle', range: '*', hasData: false }
+85 silly mapToRegistry name @types/sizzle
+86 silly mapToRegistry scope (from package name) @types
+87 verbose mapToRegistry no registry URL found in name for scope @types
+88 silly mapToRegistry using default registry
+89 silly mapToRegistry registry https://registry.npmjs.org/
+90 silly mapToRegistry uri https://registry.npmjs.org/@types%2fsizzle
+91 verbose addNameRange registry:https://registry.npmjs.org/@types%2fsizzle not in flight; fetching
+92 verbose get https://registry.npmjs.org/@types%2fsizzle not expired, no request
+93 silly addNameRange number 2 { name: '@types/sizzle', range: '*', hasData: true }
+94 silly addNameRange versions [ '@types/sizzle', [ '2.3.0', '2.3.1', '2.3.2' ] ]
+95 silly addNamed @types/sizzle@2.3.2
+96 verbose addNamed "2.3.2" is a plain semver version for @types/sizzle
+97 silly cache afterAdd @types/sizzle@2.3.2
+98 verbose afterAdd /home/Disciple153/.npm/@types/sizzle/2.3.2/package/package.json not in flight; writing
+99 verbose afterAdd /home/Disciple153/.npm/@types/sizzle/2.3.2/package/package.json written
+100 silly loadAllDepsIntoIdealTree Finishing
+101 silly idealTree:prePrune CSIS304-FinalProject
+101 silly idealTree:prePrune ├── @types/jquery@3.3.35
+101 silly idealTree:prePrune ├── @types/sizzle@2.3.2
+101 silly idealTree:prePrune ├── json-stringify-safe@5.0.1
+101 silly idealTree:prePrune ├── open-simplex-noise@2.3.1
+101 silly idealTree:prePrune └── random-seed@0.3.0
+102 silly loadIdealTree Finishing
+103 silly currentTree CSIS304-FinalProject
+103 silly currentTree ├── @types/jquery@3.3.35
+103 silly currentTree ├── @types/sizzle
+103 silly currentTree ├── json-stringify-safe@5.0.1
+103 silly currentTree ├── open-simplex-noise@2.3.1
+103 silly currentTree └── random-seed@0.3.0
+104 silly idealTree CSIS304-FinalProject
+104 silly idealTree ├── @types/jquery@3.3.35
+104 silly idealTree ├── @types/sizzle@2.3.2
+104 silly idealTree ├── json-stringify-safe@5.0.1
+104 silly idealTree ├── open-simplex-noise@2.3.1
+104 silly idealTree └── random-seed@0.3.0
+105 silly generateActionsToTake Starting
+106 silly install generateActionsToTake
+107 silly generateActionsToTake Finishing
+108 silly diffTrees action count 3
+109 silly diffTrees update @types/sizzle@2.3.2
+110 silly diffTrees update @types/jquery@3.3.35
+111 silly diffTrees update open-simplex-noise@2.3.1
+112 silly decomposeActions action count 24
+113 silly decomposeActions fetch @types/sizzle@2.3.2
+114 silly decomposeActions extract @types/sizzle@2.3.2
+115 silly decomposeActions test @types/sizzle@2.3.2
+116 silly decomposeActions preinstall @types/sizzle@2.3.2
+117 silly decomposeActions build @types/sizzle@2.3.2
+118 silly decomposeActions install @types/sizzle@2.3.2
+119 silly decomposeActions postinstall @types/sizzle@2.3.2
+120 silly decomposeActions finalize @types/sizzle@2.3.2
+121 silly decomposeActions fetch @types/jquery@3.3.35
+122 silly decomposeActions extract @types/jquery@3.3.35
+123 silly decomposeActions test @types/jquery@3.3.35
+124 silly decomposeActions preinstall @types/jquery@3.3.35
+125 silly decomposeActions build @types/jquery@3.3.35
+126 silly decomposeActions install @types/jquery@3.3.35
+127 silly decomposeActions postinstall @types/jquery@3.3.35
+128 silly decomposeActions finalize @types/jquery@3.3.35
+129 silly decomposeActions fetch open-simplex-noise@2.3.1
+130 silly decomposeActions extract open-simplex-noise@2.3.1
+131 silly decomposeActions test open-simplex-noise@2.3.1
+132 silly decomposeActions preinstall open-simplex-noise@2.3.1
+133 silly decomposeActions build open-simplex-noise@2.3.1
+134 silly decomposeActions install open-simplex-noise@2.3.1
+135 silly decomposeActions postinstall open-simplex-noise@2.3.1
+136 silly decomposeActions finalize open-simplex-noise@2.3.1
+137 silly executeActions Starting
+138 silly install executeActions
+139 silly doSerial global-install 0
+140 silly doParallel fetch 3
+141 verbose lock using /home/Disciple153/.npm/_locks/staging-fdab4871d9626fbb.lock for /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/.staging
+142 silly doParallel extract 3
+143 silly extract @types/sizzle@2.3.2
+144 silly extract @types/jquery@3.3.35
+145 silly extract open-simplex-noise@2.3.1
+146 verbose unbuild node_modules/.staging/@types/sizzle-1db35183
+147 verbose unbuild node_modules/.staging/@types/jquery-a8a3b960
+148 verbose unbuild node_modules/.staging/open-simplex-noise-ff98fa66
+149 silly gentlyRm /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/.staging/@types/sizzle-1db35183 is being purged from base /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject
+150 verbose gentlyRm don't care about contents; nuking /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/.staging/@types/sizzle-1db35183
+151 silly gentlyRm /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/.staging/@types/jquery-a8a3b960 is being purged from base /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject
+152 verbose gentlyRm don't care about contents; nuking /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/.staging/@types/jquery-a8a3b960
+153 silly gentlyRm /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/.staging/open-simplex-noise-ff98fa66 is being purged from base /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject
+154 verbose gentlyRm don't care about contents; nuking /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/.staging/open-simplex-noise-ff98fa66
+155 verbose tar unpack /home/Disciple153/.npm/@types/sizzle/2.3.2/package.tgz
+156 verbose tar unpacking to /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/.staging/@types/sizzle-1db35183
+157 silly gentlyRm /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/.staging/@types/sizzle-1db35183 is being purged
+158 verbose gentlyRm don't care about contents; nuking /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/.staging/@types/sizzle-1db35183
+159 verbose tar unpack /home/Disciple153/.npm/@types/jquery/3.3.35/package.tgz
+160 verbose tar unpacking to /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/.staging/@types/jquery-a8a3b960
+161 silly gentlyRm /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/.staging/@types/jquery-a8a3b960 is being purged
+162 verbose gentlyRm don't care about contents; nuking /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/.staging/@types/jquery-a8a3b960
+163 verbose tar unpack /home/Disciple153/.npm/open-simplex-noise/2.3.1/package.tgz
+164 verbose tar unpacking to /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/.staging/open-simplex-noise-ff98fa66
+165 silly gentlyRm /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/.staging/open-simplex-noise-ff98fa66 is being purged
+166 verbose gentlyRm don't care about contents; nuking /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/.staging/open-simplex-noise-ff98fa66
+167 silly gunzTarPerm modes [ '755', '644' ]
+168 silly gunzTarPerm modes [ '755', '644' ]
+169 silly gunzTarPerm modes [ '755', '644' ]
+170 silly gunzTarPerm extractEntry LICENSE
+171 silly gunzTarPerm modified mode [ 'LICENSE', 438, 420 ]
+172 silly gunzTarPerm extractEntry LICENSE
+173 silly gunzTarPerm extractEntry JQuery.d.ts
+174 silly gunzTarPerm modified mode [ 'JQuery.d.ts', 438, 420 ]
+175 silly gunzTarPerm extractEntry README.md
+176 silly gunzTarPerm modified mode [ 'README.md', 438, 420 ]
+177 silly gunzTarPerm extractEntry index.d.ts
+178 silly gunzTarPerm modified mode [ 'index.d.ts', 438, 420 ]
+179 silly gunzTarPerm extractEntry lib/constants.js
+180 silly gunzTarPerm extractEntry lib/index.js
+181 silly gunzTarPerm extractEntry package.json
+182 silly gunzTarPerm extractEntry README.md
+183 silly gunzTarPerm extractEntry lib/constants.d.ts
+184 silly gunzTarPerm extractEntry src/constants.ts
+185 silly gunzTarPerm extractEntry lib/index.d.ts
+186 silly gunzTarPerm extractEntry src/index.ts
+187 silly gunzTarPerm extractEntry package.json
+188 silly gunzTarPerm modified mode [ 'package.json', 438, 420 ]
+189 silly gunzTarPerm extractEntry JQueryStatic.d.ts
+190 silly gunzTarPerm modified mode [ 'JQueryStatic.d.ts', 438, 420 ]
+191 silly gunzTarPerm extractEntry LICENSE
+192 silly gunzTarPerm modified mode [ 'LICENSE', 438, 420 ]
+193 silly gentlyRm /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/.staging/@types/sizzle-1db35183/node_modules is being purged
+194 verbose gentlyRm don't care about contents; nuking /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/.staging/@types/sizzle-1db35183/node_modules
+195 silly gunzTarPerm extractEntry README.md
+196 silly gunzTarPerm modified mode [ 'README.md', 438, 420 ]
+197 silly gunzTarPerm extractEntry dist/
+198 silly gunzTarPerm modified mode [ 'dist/', 511, 493 ]
+199 silly gunzTarPerm extractEntry dist/jquery.slim.d.ts
+200 silly gunzTarPerm modified mode [ 'dist/jquery.slim.d.ts', 438, 420 ]
+201 silly gunzTarPerm extractEntry index.d.ts
+202 silly gunzTarPerm modified mode [ 'index.d.ts', 438, 420 ]
+203 silly gunzTarPerm extractEntry legacy.d.ts
+204 silly gunzTarPerm modified mode [ 'legacy.d.ts', 438, 420 ]
+205 silly gunzTarPerm extractEntry misc.d.ts
+206 silly gunzTarPerm modified mode [ 'misc.d.ts', 438, 420 ]
+207 silly gunzTarPerm extractEntry package.json
+208 silly gunzTarPerm modified mode [ 'package.json', 438, 420 ]
+209 silly gentlyRm /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/.staging/open-simplex-noise-ff98fa66/node_modules is being purged
+210 verbose gentlyRm don't care about contents; nuking /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/.staging/open-simplex-noise-ff98fa66/node_modules
+211 silly gentlyRm /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/.staging/@types/jquery-a8a3b960/node_modules is being purged
+212 verbose gentlyRm don't care about contents; nuking /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/.staging/@types/jquery-a8a3b960/node_modules
+213 silly doParallel preinstall 3
+214 silly preinstall @types/sizzle@2.3.2 /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/.staging/@types/sizzle-1db35183
+215 info lifecycle @types/sizzle@2.3.2~preinstall: @types/sizzle@2.3.2
+216 silly preinstall @types/jquery@3.3.35 /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/.staging/@types/jquery-a8a3b960
+217 info lifecycle @types/jquery@3.3.35~preinstall: @types/jquery@3.3.35
+218 silly preinstall open-simplex-noise@2.3.1 /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/.staging/open-simplex-noise-ff98fa66
+219 info lifecycle open-simplex-noise@2.3.1~preinstall: open-simplex-noise@2.3.1
+220 silly lifecycle @types/sizzle@2.3.2~preinstall: no script for preinstall, continuing
+221 silly lifecycle @types/jquery@3.3.35~preinstall: no script for preinstall, continuing
+222 silly lifecycle open-simplex-noise@2.3.1~preinstall: no script for preinstall, continuing
+223 silly doReverseSerial remove 0
+224 silly doSerial move 0
+225 silly doSerial finalize 3
+226 silly finalize /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/@types/sizzle
+227 verbose unlock done using /home/Disciple153/.npm/_locks/staging-fdab4871d9626fbb.lock for /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/.staging
+228 silly rollbackFailedOptional Starting
+229 silly rollbackFailedOptional Finishing
+230 silly runTopLevelLifecycles Starting
+231 silly runTopLevelLifecycles Finishing
+232 silly install printInstalled
+233 warn enoent ENOENT: no such file or directory, open '/mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/package.json'
+234 warn CSIS304-FinalProject No description
+235 warn CSIS304-FinalProject No repository field.
+236 warn CSIS304-FinalProject No README data
+237 warn CSIS304-FinalProject No license field.
+238 verbose stack Error: ENOENT: no such file or directory, rename '/mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/@types/sizzle' -> '/mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/@types/.sizzle.DELETE'
+238 verbose stack     at moveAway (/usr/share/npm/lib/install/action/finalize.js:38:5)
+238 verbose stack     at destStatted (/usr/share/npm/lib/install/action/finalize.js:27:7)
+238 verbose stack     at FSReqWrap.oncomplete (fs.js:82:15)
+238 verbose stack
+238 verbose stack Error: ENOENT: no such file or directory, rename '/mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/@types/sizzle' -> '/mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/@types/.sizzle.DELETE'
+238 verbose stack     at Error (native)
+239 verbose cwd /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject
+240 error Linux 4.4.0-18362-Microsoft
+241 error argv "/usr/bin/nodejs" "/usr/bin/npm" "i" "@types/jquery"
+242 error node v4.2.6
+243 error npm  v3.5.2
+244 error path /mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/@types/sizzle
+245 error code ENOENT
+246 error errno -2
+247 error syscall rename
+248 error enoent ENOENT: no such file or directory, rename '/mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/@types/sizzle' -> '/mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/@types/.sizzle.DELETE'
+249 error enoent ENOENT: no such file or directory, rename '/mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/@types/sizzle' -> '/mnt/c/Users/c_eps/Documents/2020 Spring/CSIS 304/CSIS304-FinalProject/node_modules/@types/.sizzle.DELETE'
+249 error enoent This is most likely not a problem with npm itself
+249 error enoent and is related to npm not being able to find a file.
+250 verbose exit [ -2, true ]

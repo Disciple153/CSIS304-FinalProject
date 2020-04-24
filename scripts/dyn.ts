@@ -1,9 +1,9 @@
 // tsc dyn.ts
 
-
 // *****************************************************************************
 // CONSTANTS
 // *****************************************************************************
+
 const MAX_WIDTH = $(window).width() - 5;
 const MAX_HEIGHT = $(window).height() - 5;
 
@@ -69,6 +69,8 @@ class Game {
     private static player: Ship;
     public static score: number = 0;
     public static state: State = State.menu;
+    public static music: Sound;
+    public static html: string;
 
     /**
      * Waits for a certain number of milliseconds.
@@ -180,6 +182,8 @@ class Game {
 
     static Menu() {
         $('#Menu').show();
+        Game.music = new Sound("assets/WeightoftheWorldtheEndofYoRHa.mp3", true);
+        Game.html = $("#Game").html();
     }
 
     /**
@@ -188,6 +192,10 @@ class Game {
      */
     static async Play() {
         let newTime: number;
+
+        Game.music.Play();
+
+        $("#Game").html(Game.html);
 
         $("#Score").html("" + 0);
 
@@ -313,24 +321,34 @@ class Game {
                     // Remove object from DOM
                     Game.world.gameObjects[id].element.remove();
 
-                    // Delete transfrom from world
-                    delete Game.world.gameObjects[id];
-
-                    // delete key from immovables array
+                    // Delete key from immovables array
                     index = Game.world.immovables.indexOf(id);
                     if (index !== -1) Game.world.immovables.splice(index, 1);
 
-                    // delete key from movables array
+                    // Delete key from movables array
                     index = Game.world.movables.indexOf(id);
                     if (index !== -1) Game.world.movables.splice(index, 1);
 
+                    // Delete key from specific class array
                     for (let key in Game.world.typeIDs) {
-                        index = Game.world.typeIDs[key].indexOf(id);
-                        if (index !== -1) Game.world.typeIDs[key].splice(index, 1);
+
+                        // Check if this is the correct array to delete from
+                        if (Game.world.gameObjects[id].constructor.name == key) {
+                            index = Game.world.typeIDs[key].indexOf(id);
+
+                            // If the key is in the array, delete it.
+                            if (index !== -1) {
+                                Game.world.typeIDs[key].splice(index, 1);
+                            }
+                        }
                     }
 
-                    // delete key from ids array
+                    // Delete key from ids array
                     Game.world.ids.splice(i, 1);
+
+                    // Delete transfrom from world
+                    delete Game.world.gameObjects[id];
+
                     i--;
                 }
             }
@@ -363,6 +381,8 @@ class Game {
             highScore = Game.world.player.points;
             document.cookie = "" + highScore;
         }
+
+        Game.music.Stop();
 
         $("#HighScore").html("" + highScore);
         $("#ThisScore").html("" + Game.world.player.points);

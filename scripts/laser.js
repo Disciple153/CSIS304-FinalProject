@@ -16,7 +16,7 @@ var Laser = /** @class */ (function (_super) {
     function Laser() {
         var _this_1 = _super !== null && _super.apply(this, arguments) || this;
         _this_1.SPEED = 1000;
-        _this_1.OFFSET = 30;
+        _this_1.OFFSET = 25;
         _this_1.width = 3;
         _this_1.height = 35;
         return _this_1;
