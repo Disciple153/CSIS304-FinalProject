@@ -5,7 +5,8 @@ class CatFact extends Transform {
     ROTATION_SPEED: number = 0.05;
     FIRE_RATE: number = 2;
     FIRE_ROTATE: number = 0.05;
-    GUNS_RATIO: number = 20;
+    GUNS_RATIO: number = 50;
+    LASER_POWER: number = 2;
 
     private _heightAdjusted: boolean;
     private _widthAdjusted: boolean;
@@ -120,8 +121,8 @@ class CatFact extends Transform {
 
         this.collisions.forEach(function (collision) {
             if (collision.transform instanceof Laser) {
-                _this._hp--;
-                _this._player.AddPoints(1);
+                _this._hp -= _this.LASER_POWER;
+                _this._player.AddPoints(_this.LASER_POWER);
 
 
                 if (_this._hp <= 0) {

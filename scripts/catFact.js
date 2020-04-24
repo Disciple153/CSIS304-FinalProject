@@ -20,7 +20,8 @@ var CatFact = /** @class */ (function (_super) {
         _this_1.ROTATION_SPEED = 0.05;
         _this_1.FIRE_RATE = 2;
         _this_1.FIRE_ROTATE = 0.05;
-        _this_1.GUNS_RATIO = 20;
+        _this_1.GUNS_RATIO = 50;
+        _this_1.LASER_POWER = 2;
         _this_1._currentDirection = 0;
         _this_1._targetDirection = 0;
         _this_1._fireDirection = 0;
@@ -107,8 +108,8 @@ var CatFact = /** @class */ (function (_super) {
         var _this = this;
         this.collisions.forEach(function (collision) {
             if (collision.transform instanceof Laser) {
-                _this._hp--;
-                _this._player.AddPoints(1);
+                _this._hp -= _this.LASER_POWER;
+                _this._player.AddPoints(_this.LASER_POWER);
                 if (_this._hp <= 0) {
                     _this._player.AddPoints(_this._maxHp);
                     _this._player.FactDestroyed();
