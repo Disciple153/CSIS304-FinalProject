@@ -121,6 +121,7 @@ var Game = /** @class */ (function () {
             case State.gameOver:
                 if (key == " ") {
                     $('#GameOver').hide();
+                    $('#HighScores').hide();
                     Game.state = State.play;
                     Game.Play().then();
                 }
@@ -151,8 +152,6 @@ var Game = /** @class */ (function () {
         $('#Menu').show();
         Game.music = new Sound("assets/WeightoftheWorldtheEndofYoRHa.mp3", true);
         Game.html = $("#Game").html();
-        //TODO delete
-        getHighScores("Canaan");
     };
     /**
      * The main function that controls the game.
@@ -328,6 +327,8 @@ var Game = /** @class */ (function () {
         $("#HighScore").html("" + highScore);
         $("#ThisScore").html("" + Game.world.player.points);
         $("#GameOver").show();
+        // Update high scores
+        getHighScores('HighScores');
     };
     // *****************************************************************************
     // MAIN FUNCTION

@@ -76,6 +76,19 @@
             <br>
             <h3>Press the space bar to play again!</h3>
         </div>
+        <div id="HighScores" hidden>
+            <table>
+
+            </table>
+            <form id="ScoreSubmission" name="scoreForm" onclick="submitHighScore()">
+                <label>
+                    Name:
+                    <input type="text" name="name" value="">
+                </label>
+                <input type="submit" style="display: none" />
+                <p onclick="submitHighScore()">Submit</p>
+            </form>
+        </div>
         <div id="Debug"></div>
     </body>
 </html>

@@ -61,6 +61,12 @@ table tr td:nth-child(3) {
 #Scoreboard {
     z-index: 3;
 }
+#HighScores {
+    background-color: #514E3F40;
+    padding: 20px;
+    width: 20%;
+    z-index: 4;
+}
 
 .center {
     position: absolute;

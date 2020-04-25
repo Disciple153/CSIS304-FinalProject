@@ -148,6 +148,7 @@ class Game {
             case State.gameOver:
                 if (key == " ") {
                     $('#GameOver').hide();
+                    $('#HighScores').hide();
                     Game.state = State.play;
                     Game.Play().then();
                 }
@@ -184,9 +185,6 @@ class Game {
         $('#Menu').show();
         Game.music = new Sound("assets/WeightoftheWorldtheEndofYoRHa.mp3", true);
         Game.html = $("#Game").html();
-
-        //TODO delete
-        getHighScores("Canaan");
     }
 
     /**
@@ -391,6 +389,9 @@ class Game {
         $("#ThisScore").html("" + Game.world.player.points);
 
         $("#GameOver").show();
+
+        // Update high scores
+        getHighScores('HighScores')
     }
 
 

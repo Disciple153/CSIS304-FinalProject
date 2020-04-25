@@ -96,8 +96,6 @@ class CatFact extends Transform {
             this.size.x = this.element.width();
             this.size.y = this.element.height();
 
-            console.log(this.size.x);
-
             // Place the box in a valid position above the play area.
             this.position.x =  Math.floor(Math.random() * (MAX_WIDTH - this.size.x));
 
