@@ -24,7 +24,7 @@ var Sound = /** @class */ (function () {
         var _this = this;
         _this._fade = setInterval(function () {
             if (_this._sound.volume > 0.01) {
-                _this._sound.volume -= 0.1;
+                _this._sound.volume -= 0.01;
             }
             else {
                 clearInterval(_this._fade);
