@@ -23,9 +23,10 @@ function getHighScores(id: string, input: boolean = true) {
             for (let i = 0; i < data.length; i++) {
                 element.append(`
                     <tr>
+                        <td><h3>${i + 1}</h3></td>
                         <td><h3>${data[i]['name']['S']}</h3></td>
                         <td><h3>${data[i]['score']['N']}</h3></td>
-                    </tr>
+                    </tr> 
                 `)
             }
 

@@ -41,7 +41,7 @@ var CatFact = /** @class */ (function (_super) {
         this.element.css("width", "auto");
         this.element.css("height", "auto");
         _this._fact = "Error: Cat Fact not loaded.";
-        //"https://cat-fact.herokuapp.com/facts/random"
+        // Get a random cat fact and put it in this CatFact
         $.ajax({
             url: "https://catfact.ninja/fact",
             success: function (data) {
