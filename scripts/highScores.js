@@ -1,6 +1,7 @@
 function getHighScores(id) {
     $.ajax({
         url: "https://9o9edf83h4.execute-api.us-west-2.amazonaws.com/catFactsHighScores",
+        crossDomain: true,
         accepts: {
             "Access-Control-Allow-Origin": "https://disciple153.github.io/CSIS304-FinalProject/"
         },
