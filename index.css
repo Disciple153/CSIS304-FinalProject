@@ -31,6 +31,7 @@ h2 {
 h3 {
     font-size: 25px;
     margin: 0;
+    display: inline;
 }
 
 th {
@@ -47,6 +48,11 @@ table tr td:nth-child(3) {
     text-align: center;
 }
 
+.outline {
+    background-color: #514E3F40;
+    padding: 2px;
+}
+
 #Menu table {
     background-color: #514E3F40;
     padding: 20px;
@@ -61,11 +67,31 @@ table tr td:nth-child(3) {
 #Scoreboard {
     z-index: 3;
 }
+
 #HighScores {
+    position: absolute;
     background-color: #514E3F40;
+    margin: 50px;
     padding: 20px;
-    width: 20%;
+    width: auto;
     z-index: 4;
+}
+
+#HighScores table tr td {
+    outline: 2px solid #514E3F;
+    width: auto;
+    padding: 2px 5px;
+}
+
+#HighScores table tr td:nth-child(1) {
+    width: 250px;
+}
+
+.button, input {
+    background-color: #514E3F20;
+    height: 30px;
+    padding: 0;
+    border: 0;
 }
 
 .center {

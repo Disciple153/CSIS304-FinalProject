@@ -107,25 +107,8 @@ var Game = /** @class */ (function () {
      * @constructor
      */
     Game.KeyDown = function (key) {
-        switch (Game.state) {
-            case State.menu:
-                if (key == " ") {
-                    $('#Menu').hide();
-                    Game.state = State.play;
-                    Game.Play().then();
-                }
-                break;
-            case State.play:
-                Game.world.player.KeyDown(key);
-                break;
-            case State.gameOver:
-                if (key == " ") {
-                    $('#GameOver').hide();
-                    $('#HighScores').hide();
-                    Game.state = State.play;
-                    Game.Play().then();
-                }
-                break;
+        if (Game.state === State.play) {
+            Game.world.player.KeyDown(key);
         }
     };
     Game.KeyUp = function (key) {
@@ -152,6 +135,13 @@ var Game = /** @class */ (function () {
         $('#Menu').show();
         Game.music = new Sound("assets/WeightoftheWorldtheEndofYoRHa.mp3", true);
         Game.html = $("#Game").html();
+    };
+    Game.Start = function () {
+        $('#Menu').hide();
+        $('#GameOver').hide();
+        $('#HighScores').hide();
+        Game.state = State.play;
+        Game.Play().then();
     };
     /**
      * The main function that controls the game.

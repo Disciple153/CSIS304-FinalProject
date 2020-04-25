@@ -131,28 +131,8 @@ class Game {
      * @constructor
      */
     static KeyDown(key : string): void {
-        switch (Game.state) {
-            case State.menu:
-                if (key == " ") {
-                    $('#Menu').hide();
-                    Game.state = State.play;
-                    Game.Play().then();
-                }
-                break;
-
-            case State.play:
-                Game.world.player.KeyDown(key);
-                break;
-
-
-            case State.gameOver:
-                if (key == " ") {
-                    $('#GameOver').hide();
-                    $('#HighScores').hide();
-                    Game.state = State.play;
-                    Game.Play().then();
-                }
-                break;
+        if (Game.state === State.play) {
+            Game.world.player.KeyDown(key);
         }
     }
 
@@ -185,6 +165,14 @@ class Game {
         $('#Menu').show();
         Game.music = new Sound("assets/WeightoftheWorldtheEndofYoRHa.mp3", true);
         Game.html = $("#Game").html();
+    }
+
+    static Start() {
+        $('#Menu').hide();
+        $('#GameOver').hide();
+        $('#HighScores').hide();
+        Game.state = State.play;
+        Game.Play().then();
     }
 
     /**

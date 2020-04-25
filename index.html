@@ -56,7 +56,7 @@
                     </tr>
                     <tr>
                         <td colspan="3">
-                            <h3>Press the space bar to begin!</h3>
+                            <h3 class="button" onclick="Game.Start();">Begin!</h3>
                         </td>
                     </tr>
                 </table>
@@ -74,20 +74,23 @@
             <h2>High score: </h2><h2 id="HighScore"></h2><br>
             <h2>Your score: </h2><h2 id="ThisScore"></h2><br>
             <br>
-            <h3>Press the space bar to play again!</h3>
+            <h3 class="button" onclick="Game.Start();">Play again!</h3>
         </div>
         <div id="HighScores" hidden>
-            <table>
+            <h2>
+                High Scores:
+            </h2><br><br>
 
-            </table>
-            <form id="ScoreSubmission" name="scoreForm" onclick="submitHighScore()">
+            <form id="ScoreSubmission" name="scoreForm" onsubmit="submitHighScore(); return false">
                 <label>
-                    Name:
+                    <h3>Name: </h3>
                     <input type="text" name="name" value="">
                 </label>
                 <input type="submit" style="display: none" />
-                <p onclick="submitHighScore()">Submit</p>
-            </form>
+                <h3 onclick="submitHighScore()" class="outline"> Submit</h3>
+            </form><br>
+
+            <table></table>
         </div>
         <div id="Debug"></div>
     </body>

@@ -1,14 +1,13 @@
 
-function getHighScores(id) {
+function getHighScores(id: string, input: boolean = true) {
     let element = $("#" + id + " table");
-
 
     $.ajax({
         url: "https://bw4guctac9.execute-api.us-west-2.amazonaws.com/PROD",
         crossDomain: true,
         success: function (data) {
             data.sort(function (a: any, b: any) {
-                a['score']['N'] - b['score']['N'];
+                return b['score']['N'] - a['score']['N'];
             });
 
             element.html('');
@@ -16,13 +15,15 @@ function getHighScores(id) {
             for (let i = 0; i < data.length; i++) {
                 element.append(`
                     <tr>
-                        <td>${data[i]['name']['S']}</td>
-                        <td>${data[i]['score']['N']}</td>
+                        <td><h3>${data[i]['name']['S']}</h3></td>
+                        <td><h3>${data[i]['score']['N']}</h3></td>
                     </tr>
                 `)
             }
 
-            $("#ScoreSubmission").show();
+            if (input) {
+                $("#ScoreSubmission").show();
+            }
             $("#" + id).show();
         },
         error: function (x, y, z) {
@@ -54,5 +55,5 @@ function submitHighScore() {
 
     $("#ScoreSubmission").hide();
 
-    return false;
+    getHighScores('HighScores', false);
 }
