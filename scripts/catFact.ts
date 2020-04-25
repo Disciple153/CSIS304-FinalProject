@@ -8,8 +8,8 @@ class CatFact extends Transform {
     GUNS_RATIO: number = 50;
     LASER_POWER: number = 2;
 
-    private _heightAdjusted: boolean;
-    private _widthAdjusted: boolean;
+    private _sizeAdjusted: boolean;
+    private _trimmed: boolean;
     private _textHeight: number;
     private _maxHp: number;
     private _hp: number;
@@ -29,7 +29,9 @@ class CatFact extends Transform {
         this.position.x = 20;
         this.position.y = -100;
 
-        this.velocity.y = this.FALL_VELOCITY;
+        this.velocity.y = 0;
+
+        this._targetDirection = Math.random() * 360;
 
         this.collidable = false;
 
@@ -42,7 +44,6 @@ class CatFact extends Transform {
         $.ajax({
             url: "https://catfact.ninja/fact",
             success: function (data) {
-                console.log(JSON.stringify(data));
                 _this._fact = data.fact;
                 _this.element.html(_this._fact);
                 _this._maxHp = _this._fact.length;
@@ -56,8 +57,8 @@ class CatFact extends Transform {
         });
 
         // Prepare to adjust the size of the CatFact once the text has loaded.
-        this._heightAdjusted = false;
-        this._widthAdjusted = true;
+        this._sizeAdjusted = false;
+        this._trimmed = true;
 
         // Make sure that this ship was created correcly:
         if (player == null) {
@@ -67,7 +68,7 @@ class CatFact extends Transform {
 
     Pre(world: World): void {
         // Adjust size once text is loaded.
-        if (!this._heightAdjusted && this._fact == this.element.html()) {
+        if (!this._sizeAdjusted && this._fact == this.element.html()) {
 
             // Get the default width and height of the fact
             let length = this.element.width();
@@ -86,19 +87,25 @@ class CatFact extends Transform {
                 + 1) * this._textHeight;
 
             // Get ready to trim the excess of the box of the right.
-            this._heightAdjusted = true;
-            this._widthAdjusted = false;
+            this._sizeAdjusted = true;
+            this._trimmed = false;
         }
-        else if (!this._widthAdjusted) {
+        else if (!this._trimmed) {
 
             // Trim the excess of the box on the right.
             this.size.x = this.element.width();
+            this.size.y = this.element.height();
+
+            console.log(this.size.x);
 
             // Place the box in a valid position above the play area.
             this.position.x =  Math.floor(Math.random() * (MAX_WIDTH - this.size.x));
 
             // Done adjusting
-            this._widthAdjusted = true;
+            this._trimmed = true;
+
+            // Send fact into play area
+            this.velocity.y = this.FALL_VELOCITY;
         }
 
         // Enable fact once it has reached teh play area.

@@ -23,7 +23,7 @@ var Sound = /** @class */ (function () {
     Sound.prototype.Stop = function () {
         var _this = this;
         _this._fade = setInterval(function () {
-            if (_this._sound.volume > 0.1) {
+            if (_this._sound.volume > 0.01) {
                 _this._sound.volume -= 0.1;
             }
             else {
@@ -31,7 +31,7 @@ var Sound = /** @class */ (function () {
                 _this._fade = null;
                 _this._sound.pause();
             }
-        }, 200);
+        }, 50);
     };
     return Sound;
 }());

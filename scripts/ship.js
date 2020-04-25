@@ -42,7 +42,7 @@ var Ship = /** @class */ (function (_super) {
             mouseY: 0
         };
         this._laserSounds = [];
-        for (var i = 0; i < 4; i++) {
+        for (var i = 0; i < 10; i++) {
             this._laserSounds.push(new Sound("assets/laser.mp3"));
         }
         this._hp = 3;

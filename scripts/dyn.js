@@ -151,6 +151,8 @@ var Game = /** @class */ (function () {
         $('#Menu').show();
         Game.music = new Sound("assets/WeightoftheWorldtheEndofYoRHa.mp3", true);
         Game.html = $("#Game").html();
+        //TODO delete
+        getHighScores("Canaan");
     };
     /**
      * The main function that controls the game.

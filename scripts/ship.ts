@@ -31,7 +31,7 @@ class Ship extends Transform {
         };
 
         this._laserSounds = [];
-        for (let i = 0; i < 4; i++){
+        for (let i = 0; i < 10; i++){
             this._laserSounds.push(new Sound("assets/laser.mp3"));
         }
 
