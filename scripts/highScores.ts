@@ -15,9 +15,9 @@ function getHighScores(id) {
         }
     });
 
-    $.get("https://9o9edf83h4.execute-api.us-west-2.amazonaws.com/catFactsHighScores").done(function (data) {
-        console.log(JSON.stringify(data));
-    });
+    //$.get("https://9o9edf83h4.execute-api.us-west-2.amazonaws.com/catFactsHighScores").done(function (data) {
+    //    console.log(JSON.stringify(data));
+    //});
 }
 
 function submitHighScore(id) {
