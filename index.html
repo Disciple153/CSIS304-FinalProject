@@ -82,20 +82,22 @@
             <h3 class="button" onclick="Game.Start();">Play again!</h3>
         </div>
         <div id="HighScores" hidden>
-            <h2>
-                High Scores:
-            </h2><br><br>
+            <div class="scroll">
+                <h2>
+                    High Scores:
+                </h2><br><br>
 
-            <form id="ScoreSubmission" name="scoreForm" onsubmit="submitHighScore(); return false">
-                <label>
-                    <h3>Name: </h3>
-                    <input type="text" name="name" value="">
-                </label>
-                <input type="submit" style="display: none" />
-                <h3 onclick="submitHighScore()" class="outline"> Submit</h3>
-            </form><br>
+                <form id="ScoreSubmission" name="scoreForm" onsubmit="submitHighScore(); return false">
+                    <label>
+                        <h3>Name: </h3>
+                        <input type="text" name="name" value="">
+                    </label>
+                    <input type="submit" style="display: none" />
+                    <h3 onclick="submitHighScore()" class="outline"> Submit</h3>
+                </form><br>
 
-            <table></table>
+                <table></table>
+            </div>
         </div>
         <div id="Debug"></div>
     </body>

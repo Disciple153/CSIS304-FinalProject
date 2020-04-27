@@ -53,6 +53,10 @@ table tr td:nth-child(3) {
     padding: 2px;
 }
 
+.scroll {
+    overflow-y: auto;
+}
+
 .HPLost {
     color: #A04E3F;
     display: inline;
@@ -82,7 +86,6 @@ table tr td:nth-child(3) {
 }
 
 #HighScores {
-    overflow-y: auto;
     position: absolute;
     background-color: #514E3F40;
     margin: 50px;
