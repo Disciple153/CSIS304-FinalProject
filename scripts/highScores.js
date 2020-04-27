@@ -24,7 +24,7 @@ function getHighScores(id, input) {
             if (input) {
                 $("#ScoreSubmission").show();
             }
-            if (Game.state == State.play) {
+            if (Game.state == State.gameOver) {
                 $("#" + id).show();
             }
         },
