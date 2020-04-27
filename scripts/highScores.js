@@ -25,6 +25,7 @@ function getHighScores(id, input) {
                 $("#ScoreSubmission").show();
             }
             if (Game.state == State.gameOver) {
+                $("#HighScores").css("height", MAX_HEIGHT - 150);
                 $("#" + id).show();
             }
         },

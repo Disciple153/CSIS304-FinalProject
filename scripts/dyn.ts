@@ -376,7 +376,6 @@ class Game {
         Game.music.Stop();
 
         $("#HighScore").html("" + highScore);
-        $("#HighScores").css("height", MAX_HEIGHT - 150);
         $("#ThisScore").html("" + Game.world.player.points);
 
         $("#GameOver").show();
