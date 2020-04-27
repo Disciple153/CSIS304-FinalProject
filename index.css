@@ -53,6 +53,19 @@ table tr td:nth-child(3) {
     padding: 2px;
 }
 
+.HPLost {
+    color: #A04E3F;
+    display: inline;
+    margin:0;
+    padding:0;
+}
+
+.HPRemaining {
+    display: inline;
+    margin:0;
+    padding:0;
+}
+
 #Menu table {
     background-color: #514E3F40;
     padding: 20px;
@@ -86,14 +99,6 @@ table tr td:nth-child(3) {
 
 #HighScores table tr td:nth-child(2) {
     width: 250px;
-}
-
-#HPLost {
-    color: red;
-}
-
-#HPRemaining {
-
 }
 
 .button, input {

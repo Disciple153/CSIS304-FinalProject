@@ -43,21 +43,7 @@ var CatFact = /** @class */ (function (_super) {
         this.element.css("height", "auto");
         _this._fact = "Error: Cat Fact not loaded.";
         // Get a random cat fact and put it in this CatFact
-        $.ajax({
-            url: "https://catfact.ninja/fact",
-            success: function (data) {
-                _this._fact = data.fact;
-                _this.element.html(_this._fact);
-                _this._maxHp = _this._fact.length;
-                _this._hp = _this._maxHp;
-                _this._numGuns = Math.floor((_this._maxHp / _this.GUNS_RATIO) + 1);
-                loaded = true;
-            },
-            error: function (x, y, z) {
-                console.log("ERROR\n" + JSON.stringify(x) + "\n" + y + "\n" + z);
-                _this.element.html(_this._fact);
-            }
-        });
+        this.Load();
         // Prepare to adjust the size of the CatFact once the text has loaded.
         this._sizeAdjusted = false;
         this._trimmed = true;
@@ -115,7 +101,7 @@ var CatFact = /** @class */ (function (_super) {
             if (collision.transform instanceof Laser) {
                 _this._hp -= _this.LASER_POWER;
                 _this._player.AddPoints(_this.LASER_POWER);
-                _this.element.html("\n                <p class=\"HPLost\">" + _this._fact.slice(0, _this._hp) + "</p>\n                <p class=\"HPRemaining\">" + _this._fact.slice(_this._hp, _this._fact.length) + "</p>\n                ");
+                _this.element.html("\n                <p class=\"HPLost\">" + _this._fact.slice(0, _this._maxHp - _this._hp) + "</p><p class=\"HPRemaining\">" + _this._fact.slice(_this._maxHp - _this._hp, _this._fact.length) + "</p>\n                ");
                 if (_this._hp <= 0) {
                     _this._player.AddPoints(_this._maxHp);
                     _this._player.FactDestroyed();
@@ -159,6 +145,23 @@ var CatFact = /** @class */ (function (_super) {
                 bullet.Init(world, (this._fireDirection + ((i * 360) / this._numGuns)) % 360, pos);
             }
         }
+    };
+    CatFact.prototype.Load = function () {
+        var _this = this;
+        $.ajax({
+            url: "https://catfact.ninja/fact",
+            success: function (data) {
+                _this._fact = data.fact;
+                _this.element.html(_this._fact);
+                _this._maxHp = _this._fact.length;
+                _this._hp = _this._maxHp;
+                _this._numGuns = Math.floor((_this._maxHp / _this.GUNS_RATIO) + 1);
+            },
+            error: function (x, y, z) {
+                console.log("ERROR\n" + JSON.stringify(x) + "\n" + y + "\n" + z);
+                _this.Load();
+            }
+        });
     };
     return CatFact;
 }(Transform));

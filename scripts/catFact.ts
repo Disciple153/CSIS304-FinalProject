@@ -42,21 +42,7 @@ class CatFact extends Transform {
 
 
         // Get a random cat fact and put it in this CatFact
-        $.ajax({
-            url: "https://catfact.ninja/fact",
-            success: function (data) {
-                _this._fact = data.fact;
-                _this.element.html(_this._fact);
-                _this._maxHp = _this._fact.length;
-                _this._hp = _this._maxHp;
-                _this._numGuns = Math.floor((_this._maxHp / _this.GUNS_RATIO) + 1);
-                loaded = true;
-            },
-            error: function (x, y, z) {
-                console.log("ERROR\n" + JSON.stringify(x) + "\n" + y + "\n" + z);
-                _this.element.html(_this._fact);
-            }
-        });
+        this.Load();
 
         // Prepare to adjust the size of the CatFact once the text has loaded.
         this._sizeAdjusted = false;
@@ -132,8 +118,7 @@ class CatFact extends Transform {
                 _this._player.AddPoints(_this.LASER_POWER);
 
                 _this.element.html(`
-                <p class="HPLost">${_this._fact.slice(0, _this._hp)}</p>
-                <p class="HPRemaining">${_this._fact.slice(_this._hp, _this._fact.length)}</p>
+                <p class="HPLost">${_this._fact.slice(0, _this._maxHp - _this._hp)}</p><p class="HPRemaining">${_this._fact.slice(_this._maxHp - _this._hp, _this._fact.length)}</p>
                 `);
 
 
@@ -193,6 +178,25 @@ class CatFact extends Transform {
                     pos);
             }
         }
+    }
+
+    Load() {
+        let _this = this;
+
+        $.ajax({
+            url: "https://catfact.ninja/fact",
+            success: function (data) {
+                _this._fact = data.fact;
+                _this.element.html(_this._fact);
+                _this._maxHp = _this._fact.length;
+                _this._hp = _this._maxHp;
+                _this._numGuns = Math.floor((_this._maxHp / _this.GUNS_RATIO) + 1);
+            },
+            error: function (x, y, z) {
+                console.log("ERROR\n" + JSON.stringify(x) + "\n" + y + "\n" + z);
+                _this.Load();
+            }
+        });
     }
 }
 
