@@ -32,6 +32,7 @@ var CatFact = /** @class */ (function (_super) {
     CatFact.prototype.Init = function (world, player) {
         if (player === void 0) { player = null; }
         var _this = this;
+        var loaded = false;
         this._player = player;
         this.position.x = 20;
         this.position.y = -100;
@@ -42,20 +43,23 @@ var CatFact = /** @class */ (function (_super) {
         this.element.css("height", "auto");
         _this._fact = "Error: Cat Fact not loaded.";
         // Get a random cat fact and put it in this CatFact
-        $.ajax({
-            url: "https://catfact.ninja/fact",
-            success: function (data) {
-                _this._fact = data.fact;
-                _this.element.html(_this._fact);
-                _this._maxHp = _this._fact.length;
-                _this._hp = _this._maxHp;
-                _this._numGuns = Math.floor((_this._maxHp / _this.GUNS_RATIO) + 1);
-            },
-            error: function (x, y, z) {
-                console.log("ERROR\n" + JSON.stringify(x) + "\n" + y + "\n" + z);
-                _this.element.html(_this._fact);
-            }
-        });
+        while (!loaded) {
+            $.ajax({
+                url: "https://catfact.ninja/fact",
+                success: function (data) {
+                    _this._fact = data.fact;
+                    _this.element.html(_this._fact);
+                    _this._maxHp = _this._fact.length;
+                    _this._hp = _this._maxHp;
+                    _this._numGuns = Math.floor((_this._maxHp / _this.GUNS_RATIO) + 1);
+                    loaded = true;
+                },
+                error: function (x, y, z) {
+                    console.log("ERROR\n" + JSON.stringify(x) + "\n" + y + "\n" + z);
+                    _this.element.html(_this._fact);
+                }
+            });
+        }
         // Prepare to adjust the size of the CatFact once the text has loaded.
         this._sizeAdjusted = false;
         this._trimmed = true;
