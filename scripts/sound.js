@@ -12,13 +12,20 @@ var Sound = /** @class */ (function () {
     }
     Sound.prototype.Play = function (volume) {
         if (volume === void 0) { volume = 1; }
+        var playPromise;
         if (this._fade != null) {
             clearInterval(this._fade);
             this._fade = null;
         }
         this._sound.volume = volume;
         this._sound.currentTime = 0;
-        this._sound.play().then();
+        playPromise = this._sound.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(function (error) {
+                // Play was interrupted.
+                // This is okay.
+            });
+        }
     };
     Sound.prototype.Stop = function () {
         var _this = this;

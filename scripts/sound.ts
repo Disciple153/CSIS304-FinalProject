@@ -14,6 +14,8 @@ class Sound {
     }
 
     Play(volume: number = 1) {
+        let playPromise;
+
         if (this._fade != null) {
             clearInterval(this._fade);
             this._fade = null;
@@ -21,7 +23,14 @@ class Sound {
 
         this._sound.volume = volume;
         this._sound.currentTime = 0;
-        this._sound.play().then();
+        playPromise = this._sound.play();
+
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                // Play was interrupted.
+                // This is okay.
+            });
+        }
     }
 
     Stop() {
