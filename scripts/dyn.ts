@@ -4,8 +4,8 @@
 // CONSTANTS
 // *****************************************************************************
 
-const MAX_WIDTH = $(window).width() - 5;
-const MAX_HEIGHT = $(window).height() - 5;
+let MAX_WIDTH = $(window).width() - 5;
+let MAX_HEIGHT = $(window).height() - 5;
 
 // *****************************************************************************
 // ENUMS
@@ -181,6 +181,8 @@ class Game {
      */
     static async Play() {
         let newTime: number;
+        MAX_WIDTH = $(window).width() - 5;
+        MAX_HEIGHT = $(window).height() - 5;
 
         Game.music.Play();
 

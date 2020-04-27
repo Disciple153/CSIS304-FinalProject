@@ -153,6 +153,8 @@ var Game = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        MAX_WIDTH = $(window).width() - 5;
+                        MAX_HEIGHT = $(window).height() - 5;
                         Game.music.Play();
                         $("#Game").html(Game.html);
                         $("#Score").html("" + 0);
